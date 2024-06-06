@@ -1,14 +1,14 @@
-# Project
+# RadFact: An LLM-based Evaluation Metric for AI-generated Grounded Radiology Reporting
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+**We will be releasing the code soon.**
 
-As the maintainer of this project, please make a few updates:
+![Illustration of RadFact](RadFact.png "Illustration of RadFact")
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+In the meantime, check out:
+
+ - [MAIRA-2: Grounded Radiology Report Generation](https://aka.ms/maira-2)
+ - [RAD-DINO model](https://aka.ms/rad-dino-model)
+ - [Project MAIRA](https://www.microsoft.com/en-us/research/project/project-maira/)
 
 ## Contributing
 
