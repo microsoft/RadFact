@@ -1,4 +1,4 @@
-# RadFact: An LLM-based Evaluation Metric for AI-generated Grounded Radiology Reporting
+# RadFact: An LLM-based Evaluation Metric for AI-generated Radiology Reporting
 
 **We will be releasing the code soon.**
 
@@ -6,7 +6,7 @@
 
 In the meantime, check out:
 
- - [MAIRA-2: Grounded Radiology Report Generation](https://aka.ms/maira-2)
+ - [MAIRA-2: Radiology Report Generation](https://aka.ms/maira-2)
  - [RAD-DINO model](https://aka.ms/rad-dino-model)
  - [Project MAIRA](https://www.microsoft.com/en-us/research/project/project-maira/)
 
