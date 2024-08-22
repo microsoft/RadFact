@@ -1,0 +1,1708 @@
+[
+  {
+    "prediction": [
+      {
+        "text": "Cardiac silhouette remains normal in size.",
+        "boxes": null
+      },
+      {
+        "text": "Moderate-sized area of airspace opacity in the left base has improved.",
+        "boxes": [
+          {
+            "x_min": 0.535,
+            "y_min": 0.355,
+            "x_max": 0.865,
+            "y_max": 0.725
+          }
+        ]
+      },
+      {
+        "text": "There is a small residual opacity in that area.",
+        "boxes": [
+          {
+            "x_min": 0.055,
+            "y_min": 0.325,
+            "x_max": 0.375,
+            "y_max": 0.695
+          }
+        ]
+      },
+      {
+        "text": "Parenchymal opacities in the right base are slightly improved.",
+        "boxes": [
+          {
+            "x_min": 0.055,
+            "y_min": 0.405,
+            "x_max": 0.395,
+            "y_max": 0.725
+          }
+        ]
+      },
+      {
+        "text": "No new infiltrates are evident.",
+        "boxes": null
+      },
+      {
+        "text": "Old rib fractures on the left are evident.",
+        "boxes": [
+          {
+            "x_min": 0.515,
+            "y_min": 0.125,
+            "x_max": 0.835,
+            "y_max": 0.615
+          }
+        ]
+      }
+    ],
+    "target": [
+      {
+        "text": "Cardiac silhouette is normal in size.",
+        "boxes": null
+      },
+      {
+        "text": "There are some reticular appearing markings in the bases similar to previous.",
+        "boxes": [
+          {
+            "x_min": 0.015,
+            "y_min": 0.475,
+            "x_max": 0.375,
+            "y_max": 0.775
+          },
+          {
+            "x_min": 0.495,
+            "y_min": 0.435,
+            "x_max": 0.915,
+            "y_max": 0.725
+          }
+        ]
+      },
+      {
+        "text": "Scattered areas of scarring are evident.",
+        "boxes": [
+          {
+            "x_min": 0.525,
+            "y_min": 0.005,
+            "x_max": 0.835,
+            "y_max": 0.645
+          },
+          {
+            "x_min": 0.055,
+            "y_min": 0.055,
+            "x_max": 0.395,
+            "y_max": 0.685
+          }
+        ]
+      },
+      {
+        "text": "No new infiltrate is evident.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural fluid is evident.",
+        "boxes": null
+      }
+    ],
+    "example_id": 0
+  },
+  {
+    "prediction": [
+      {
+        "text": "Bone mineralization appears decreased.",
+        "boxes": [
+          {
+            "x_min": 0.045,
+            "y_min": 0.005,
+            "x_max": 0.985,
+            "y_max": 0.995
+          }
+        ]
+      },
+      {
+        "text": "No rib fractures identified.",
+        "boxes": null
+      },
+      {
+        "text": "Degenerative change in the spine with scoliosis.",
+        "boxes": [
+          {
+            "x_min": 0.335,
+            "y_min": 0.005,
+            "x_max": 0.625,
+            "y_max": 0.995
+          }
+        ]
+      },
+      {
+        "text": "Lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Nondisplaced fracture of the lateral right seventh rib.",
+        "boxes": [
+          {
+            "x_min": 0.045,
+            "y_min": 0.265,
+            "x_max": 0.075,
+            "y_max": 0.385
+          }
+        ]
+      },
+      {
+        "text": "Possible nondisplaced fracture of the lateral right eighth and ninth ribs.",
+        "boxes": [
+          {
+            "x_min": 0.015,
+            "y_min": 0.625,
+            "x_max": 0.055,
+            "y_max": 0.685
+          },
+          {
+            "x_min": 0.035,
+            "y_min": 0.755,
+            "x_max": 0.065,
+            "y_max": 0.775
+          }
+        ]
+      },
+      {
+        "text": "Chronic anterior right fifth, sixth and seventh rib fractures.",
+        "boxes": null
+      },
+      {
+        "text": "Chronic appearing interstitial background lung changes.",
+        "boxes": [
+          {
+            "x_min": 0.485,
+            "y_min": 0.005,
+            "x_max": 0.845,
+            "y_max": 0.515
+          },
+          {
+            "x_min": 0.055,
+            "y_min": 0.005,
+            "x_max": 0.395,
+            "y_max": 0.605
+          }
+        ]
+      },
+      {
+        "text": "No focal opacity.",
+        "boxes": null
+      },
+      {
+        "text": "Mild prominence to the cardiac shadow.",
+        "boxes": [
+          {
+            "x_min": 0.265,
+            "y_min": 0.275,
+            "x_max": 0.745,
+            "y_max": 0.595
+          }
+        ]
+      },
+      {
+        "text": "Mild prominence of the central pulmonary arteries.",
+        "boxes": [
+          {
+            "x_min": 0.485,
+            "y_min": 0.025,
+            "x_max": 0.755,
+            "y_max": 0.455
+          },
+          {
+            "x_min": 0.125,
+            "y_min": 0.055,
+            "x_max": 0.395,
+            "y_max": 0.505
+          }
+        ]
+      },
+      {
+        "text": "Posterior spinal fusion hardware at the thoracolumbar spine.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      }
+    ],
+    "example_id": 1
+  },
+  {
+    "prediction": [
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiac contours appear normal.",
+        "boxes": null
+      },
+      {
+        "text": "Mediastinal contours appear normal.",
+        "boxes": null
+      },
+      {
+        "text": "Ribs intact.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiac contours appear normal.",
+        "boxes": null
+      },
+      {
+        "text": "Mediastinal contours appear normal.",
+        "boxes": null
+      },
+      {
+        "text": "Fracture left anterior sixth rib.",
+        "boxes": [
+          {
+            "x_min": 0.775,
+            "y_min": 0.535,
+            "x_max": 0.915,
+            "y_max": 0.635
+          }
+        ]
+      },
+      {
+        "text": "Probably fracture left anterior seventh rib.",
+        "boxes": [
+          {
+            "x_min": 0.945,
+            "y_min": 0.595,
+            "x_max": 0.985,
+            "y_max": 0.685
+          }
+        ]
+      }
+    ],
+    "example_id": 2
+  },
+  {
+    "prediction": [
+      {
+        "text": "The heart is normal in size and configuration.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is normal in size and configuration.",
+        "boxes": null
+      },
+      {
+        "text": "The hila are normal in size and configuration.",
+        "boxes": null
+      },
+      {
+        "text": "Pacemaker is on the anterior left chest wall with leads terminating in the region of the right atrium and right ventricle.",
+        "boxes": [
+          {
+            "x_min": 0.705,
+            "y_min": 0.255,
+            "x_max": 0.855,
+            "y_max": 0.445
+          }
+        ]
+      },
+      {
+        "text": "Lungs are normally inflated.",
+        "boxes": null
+      },
+      {
+        "text": "There is mild central bronchial wall thickening.",
+        "boxes": [
+          {
+            "x_min": 0.215,
+            "y_min": 0.225,
+            "x_max": 0.825,
+            "y_max": 0.775
+          }
+        ]
+      },
+      {
+        "text": "There is no focal infiltrate.",
+        "boxes": null
+      },
+      {
+        "text": "There is no pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "There is moderate spondylosis of the mid to lower thoracic spine.",
+        "boxes": [
+          {
+            "x_min": 0.415,
+            "y_min": 0.225,
+            "x_max": 0.615,
+            "y_max": 0.995
+          }
+        ]
+      }
+    ],
+    "target": [
+      {
+        "text": "Pacemaker is on anterior left chest wall with leads terminating in the region of the right atrium and right ventricle.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is normal in size and configuration.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is normal in size and configuration.",
+        "boxes": null
+      },
+      {
+        "text": "The hila are normal in size and configuration.",
+        "boxes": null
+      },
+      {
+        "text": "The aorta is mildly dilated and tortuous.",
+        "boxes": [
+          {
+            "x_min": 0.425,
+            "y_min": 0.335,
+            "x_max": 0.635,
+            "y_max": 0.805
+          }
+        ]
+      },
+      {
+        "text": "Lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "Pleural spaces are clear.",
+        "boxes": null
+      },
+      {
+        "text": "There is a dorsal kyphosis and moderate spondylosis of the mid to lower thoracic spine.",
+        "boxes": [
+          {
+            "x_min": 0.415,
+            "y_min": 0.295,
+            "x_max": 0.615,
+            "y_max": 0.985
+          }
+        ]
+      }
+    ],
+    "example_id": 3
+  },
+  {
+    "prediction": [
+      {
+        "text": "Lungs: unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "No consolidation.",
+        "boxes": null
+      },
+      {
+        "text": "Pleural space: unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "Heart: unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "No cardiomegaly.",
+        "boxes": null
+      },
+      {
+        "text": "Mediastinum: unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "Bones/joints: unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Mild retrocardiac increased density.",
+        "boxes": [
+          {
+            "x_min": 0.395,
+            "y_min": 0.305,
+            "x_max": 0.835,
+            "y_max": 0.695
+          }
+        ]
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "No cardiomegaly.",
+        "boxes": null
+      }
+    ],
+    "example_id": 4
+  },
+  {
+    "prediction": [
+      {
+        "text": "The lungs are adequately inflated.",
+        "boxes": null
+      },
+      {
+        "text": "No focal airspace opacity.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "Normal cardiomediastinal silhouette.",
+        "boxes": null
+      },
+      {
+        "text": "Normal imaged portion of the upper abdomen.",
+        "boxes": null
+      },
+      {
+        "text": "Degenerative changes are present at the spine.",
+        "boxes": [
+          {
+            "x_min": 0.385,
+            "y_min": 0.105,
+            "x_max": 0.615,
+            "y_max": 0.975
+          }
+        ]
+      }
+    ],
+    "target": [
+      {
+        "text": "Lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "Relative attenuation of the upper lobe blood vessels.",
+        "boxes": [
+          {
+            "x_min": 0.215,
+            "y_min": 0.155,
+            "x_max": 0.445,
+            "y_max": 0.465
+          },
+          {
+            "x_min": 0.545,
+            "y_min": 0.135,
+            "x_max": 0.785,
+            "y_max": 0.435
+          }
+        ]
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 5
+  },
+  {
+    "prediction": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded and clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "The soft tissues are normal.",
+        "boxes": null
+      },
+      {
+        "text": "There is a wedge compression fracture with kyphoplasty in the lower thoracic spine.",
+        "boxes": [
+          {
+            "x_min": 0.465,
+            "y_min": 0.815,
+            "x_max": 0.635,
+            "y_max": 0.955
+          }
+        ]
+      },
+      {
+        "text": "There is calcification of the anterior ligament of the spine consistent with diffuse idiopathic skeletal hyperostosis.",
+        "boxes": [
+          {
+            "x_min": 0.465,
+            "y_min": 0.215,
+            "x_max": 0.665,
+            "y_max": 0.945
+          }
+        ]
+      },
+      {
+        "text": "The lungs are well expanded and clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 6
+  },
+  {
+    "prediction": [
+      {
+        "text": "There is a large masslike opacity in the right upper lobe measuring approximately 12.5 x 10 cm.",
+        "boxes": [
+          {
+            "x_min": 0.185,
+            "y_min": 0.155,
+            "x_max": 0.485,
+            "y_max": 0.475
+          }
+        ]
+      },
+      {
+        "text": "Right lower lobe is clear.",
+        "boxes": null
+      },
+      {
+        "text": "Left lung is clear.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "There is a large right upper lobe mass.",
+        "boxes": [
+          {
+            "x_min": 0.165,
+            "y_min": 0.115,
+            "x_max": 0.505,
+            "y_max": 0.575
+          }
+        ]
+      },
+      {
+        "text": "Left lung is clear.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 7
+  },
+  {
+    "prediction": [
+      {
+        "text": "Lungs are clear without mass.",
+        "boxes": null
+      },
+      {
+        "text": "Lungs are clear without consolidation.",
+        "boxes": null
+      },
+      {
+        "text": "Lungs are clear without pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "Lungs are clear without pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "No displaced rib fractures are seen.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "There are no acute osseous abnormalities.",
+        "boxes": null
+      },
+      {
+        "text": "There are no displaced rib fractures seen.",
+        "boxes": null
+      },
+      {
+        "text": "There is moderate to severe degenerative change of the bilateral shoulders.",
+        "boxes": [
+          {
+            "x_min": 0.005,
+            "y_min": 0.015,
+            "x_max": 0.115,
+            "y_max": 0.245
+          },
+          {
+            "x_min": 0.955,
+            "y_min": 0.025,
+            "x_max": 0.995,
+            "y_max": 0.225
+          }
+        ]
+      },
+      {
+        "text": "Probable old healed rib fracture of the anterolateral right 11th rib.",
+        "boxes": null
+      }
+    ],
+    "example_id": 8
+  },
+  {
+    "prediction": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded and clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded.",
+        "boxes": null
+      },
+      {
+        "text": "There is right middle lobe airspace disease.",
+        "boxes": [
+          {
+            "x_min": 0.075,
+            "y_min": 0.555,
+            "x_max": 0.295,
+            "y_max": 0.725
+          }
+        ]
+      },
+      {
+        "text": "The remaining lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 9
+  },
+  {
+    "prediction": [
+      {
+        "text": "There is airspace disease in the right lower lobe.",
+        "boxes": [
+          {
+            "x_min": 0.015,
+            "y_min": 0.435,
+            "x_max": 0.395,
+            "y_max": 0.745
+          }
+        ]
+      },
+      {
+        "text": "No mass.",
+        "boxes": null
+      },
+      {
+        "text": "No pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Right middle lobe consolidation.",
+        "boxes": [
+          {
+            "x_min": 0.045,
+            "y_min": 0.505,
+            "x_max": 0.335,
+            "y_max": 0.705
+          }
+        ]
+      },
+      {
+        "text": "Fullness of the right hila.",
+        "boxes": [
+          {
+            "x_min": 0.145,
+            "y_min": 0.305,
+            "x_max": 0.415,
+            "y_max": 0.655
+          }
+        ]
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 10
+  },
+  {
+    "prediction": [
+      {
+        "text": "There is a displaced fracture involving the lateral arc of the right 10th rib.",
+        "boxes": [
+          {
+            "x_min": 0.065,
+            "y_min": 0.465,
+            "x_max": 0.285,
+            "y_max": 0.805
+          }
+        ]
+      },
+      {
+        "text": "There is a small amount of pleural fluid and/or thickening seen at the left lung base.",
+        "boxes": [
+          {
+            "x_min": 0.615,
+            "y_min": 0.505,
+            "x_max": 0.955,
+            "y_max": 0.835
+          }
+        ]
+      },
+      {
+        "text": "There is some atelectasis and/or infiltrate in the left lower lobe.",
+        "boxes": [
+          {
+            "x_min": 0.585,
+            "y_min": 0.465,
+            "x_max": 0.955,
+            "y_max": 0.835
+          }
+        ]
+      },
+      {
+        "text": "No pneumothorax is identified.",
+        "boxes": null
+      },
+      {
+        "text": "Heart size is normal.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Frontal and lateral chest demonstrates midline trachea.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal contour unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "New left retrocardiac opacity with minimal hemidiaphragm obscuration.",
+        "boxes": [
+          {
+            "x_min": 0.585,
+            "y_min": 0.555,
+            "x_max": 0.945,
+            "y_max": 0.885
+          }
+        ]
+      },
+      {
+        "text": "Remainder the lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "No effusions.",
+        "boxes": null
+      },
+      {
+        "text": "No pneumothoraces.",
+        "boxes": null
+      },
+      {
+        "text": "Visualized upper abdomen normal.",
+        "boxes": null
+      },
+      {
+        "text": "Right 8th posterior rib has a minimally displaced fracture subacute to acute.",
+        "boxes": [
+          {
+            "x_min": 0.155,
+            "y_min": 0.455,
+            "x_max": 0.295,
+            "y_max": 0.595
+          }
+        ]
+      },
+      {
+        "text": "Nonacute stable widening right acromioclavicular and coracoclavicular distances.",
+        "boxes": [
+          {
+            "x_min": 0.005,
+            "y_min": 0.005,
+            "x_max": 0.195,
+            "y_max": 0.185
+          }
+        ]
+      },
+      {
+        "text": "Visualized upper abdomen normal.",
+        "boxes": null
+      }
+    ],
+    "example_id": 11
+  },
+  {
+    "prediction": [
+      {
+        "text": "Heart size is normal.",
+        "boxes": null
+      },
+      {
+        "text": "Perihilar interstitial prominence is present.",
+        "boxes": [
+          {
+            "x_min": 0.195,
+            "y_min": 0.265,
+            "x_max": 0.735,
+            "y_max": 0.635
+          }
+        ]
+      },
+      {
+        "text": "There is increased opacity in the right lower lobe.",
+        "boxes": [
+          {
+            "x_min": 0.115,
+            "y_min": 0.425,
+            "x_max": 0.415,
+            "y_max": 0.695
+          }
+        ]
+      },
+      {
+        "text": "Pulmonary vascularity is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "There is no pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "There is no pleural effusion.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "The cardiomediastinal silhouette appears normal.",
+        "boxes": null
+      },
+      {
+        "text": "There is mild prominence of perihilar interstitial markings and peribronchial cuffing.",
+        "boxes": [
+          {
+            "x_min": 0.505,
+            "y_min": 0.295,
+            "x_max": 0.695,
+            "y_max": 0.585
+          },
+          {
+            "x_min": 0.225,
+            "y_min": 0.285,
+            "x_max": 0.415,
+            "y_max": 0.565
+          }
+        ]
+      },
+      {
+        "text": "No focal airspace opacities are seen.",
+        "boxes": null
+      },
+      {
+        "text": "There is no pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "There is no pleural effusion.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 12
+  },
+  {
+    "prediction": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded and clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded.",
+        "boxes": null
+      },
+      {
+        "text": "There is a 9 mm nodule in the left upper lobe.",
+        "boxes": [
+          {
+            "x_min": 0.705,
+            "y_min": 0.355,
+            "x_max": 0.735,
+            "y_max": 0.385
+          }
+        ]
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 13
+  },
+  {
+    "prediction": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded.",
+        "boxes": null
+      },
+      {
+        "text": "There is a retrocardiac infiltrate.",
+        "boxes": [
+          {
+            "x_min": 0.475,
+            "y_min": 0.265,
+            "x_max": 0.815,
+            "y_max": 0.585
+          }
+        ]
+      },
+      {
+        "text": "The remainder of the lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "The soft tissues and boney thorax are normal for the patient's age.",
+        "boxes": null
+      },
+      {
+        "text": "The lungs are well expanded.",
+        "boxes": null
+      },
+      {
+        "text": "There is a left lower lobe infiltrate obscuring the cardiac apex.",
+        "boxes": [
+          {
+            "x_min": 0.625,
+            "y_min": 0.195,
+            "x_max": 0.855,
+            "y_max": 0.365
+          }
+        ]
+      },
+      {
+        "text": "The remainder of the lungs are clear.",
+        "boxes": null
+      },
+      {
+        "text": "The heart is unremarkable.",
+        "boxes": null
+      },
+      {
+        "text": "The mediastinum is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 14
+  },
+  {
+    "prediction": [
+      {
+        "text": "There is hyperinflation with peribronchial cuffing and airway wall thickening without consolidation.",
+        "boxes": [
+          {
+            "x_min": 0.275,
+            "y_min": 0.145,
+            "x_max": 0.885,
+            "y_max": 0.655
+          }
+        ]
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "There is mild hyperinflation.",
+        "boxes": [
+          {
+            "x_min": 0.185,
+            "y_min": 0.115,
+            "x_max": 0.545,
+            "y_max": 0.635
+          },
+          {
+            "x_min": 0.645,
+            "y_min": 0.135,
+            "x_max": 0.965,
+            "y_max": 0.725
+          }
+        ]
+      },
+      {
+        "text": "Mild peribronchial cuffing and airway wall thickening.",
+        "boxes": [
+          {
+            "x_min": 0.215,
+            "y_min": 0.135,
+            "x_max": 0.545,
+            "y_max": 0.585
+          },
+          {
+            "x_min": 0.675,
+            "y_min": 0.165,
+            "x_max": 0.935,
+            "y_max": 0.605
+          }
+        ]
+      },
+      {
+        "text": "No consolidation.",
+        "boxes": null
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 15
+  },
+  {
+    "prediction": [
+      {
+        "text": "There is mild peribronchial cuffing and airway wall thickening.",
+        "boxes": [
+          {
+            "x_min": 0.085,
+            "y_min": 0.135,
+            "x_max": 0.955,
+            "y_max": 0.805
+          }
+        ]
+      },
+      {
+        "text": "There is mild flattening of the hemidiaphragms.",
+        "boxes": [
+          {
+            "x_min": 0.035,
+            "y_min": 0.655,
+            "x_max": 0.995,
+            "y_max": 0.905
+          }
+        ]
+      },
+      {
+        "text": "Cardiomediastinal silhouette is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature is within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "There is mild hyperinflation with mild flattening of the diaphragms and increased ap diameter.",
+        "boxes": [
+          {
+            "x_min": 0.595,
+            "y_min": 0.175,
+            "x_max": 0.975,
+            "y_max": 0.805
+          },
+          {
+            "x_min": 0.045,
+            "y_min": 0.175,
+            "x_max": 0.445,
+            "y_max": 0.785
+          }
+        ]
+      },
+      {
+        "text": "Relative attenuation of the upper lobe blood vessels.",
+        "boxes": [
+          {
+            "x_min": 0.165,
+            "y_min": 0.155,
+            "x_max": 0.445,
+            "y_max": 0.425
+          },
+          {
+            "x_min": 0.595,
+            "y_min": 0.145,
+            "x_max": 0.905,
+            "y_max": 0.455
+          }
+        ]
+      },
+      {
+        "text": "There is mild peribronchial cuffing and airway wall thickening.",
+        "boxes": [
+          {
+            "x_min": 0.065,
+            "y_min": 0.155,
+            "x_max": 0.455,
+            "y_max": 0.765
+          },
+          {
+            "x_min": 0.575,
+            "y_min": 0.165,
+            "x_max": 0.925,
+            "y_max": 0.765
+          }
+        ]
+      },
+      {
+        "text": "Cardiomediastinal silhouette within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Pulmonary vasculature within normal limits.",
+        "boxes": null
+      },
+      {
+        "text": "Osseous structures are unremarkable.",
+        "boxes": null
+      }
+    ],
+    "example_id": 16
+  },
+  {
+    "prediction": [
+      {
+        "text": "The lung fields are free of infiltrates.",
+        "boxes": null
+      },
+      {
+        "text": "There is a small left pleural effusion.",
+        "boxes": [
+          {
+            "x_min": 0.775,
+            "y_min": 0.625,
+            "x_max": 0.945,
+            "y_max": 0.805
+          }
+        ]
+      },
+      {
+        "text": "The heart size is normal.",
+        "boxes": null
+      },
+      {
+        "text": "The bony thorax is unremarkable.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Nondisplaced fractures of left anterior sixth and seventh ribs.",
+        "boxes": [
+          {
+            "x_min": 0.945,
+            "y_min": 0.595,
+            "x_max": 0.995,
+            "y_max": 0.795
+          }
+        ]
+      },
+      {
+        "text": "Small left pleural effusion.",
+        "boxes": [
+          {
+            "x_min": 0.875,
+            "y_min": 0.725,
+            "x_max": 0.995,
+            "y_max": 0.865
+          }
+        ]
+      },
+      {
+        "text": "Linear atelectatic changes in the left lung base.",
+        "boxes": [
+          {
+            "x_min": 0.585,
+            "y_min": 0.555,
+            "x_max": 0.995,
+            "y_max": 0.825
+          }
+        ]
+      },
+      {
+        "text": "There is no pneumothorax.",
+        "boxes": null
+      },
+      {
+        "text": "Mild irregularity of the cortical margin of the left anterior sixth rib.",
+        "boxes": [
+          {
+            "x_min": 0.955,
+            "y_min": 0.625,
+            "x_max": 0.995,
+            "y_max": 0.725
+          }
+        ]
+      },
+      {
+        "text": "Mild irregularity of the cortical margin of the left anterior seventh rib.",
+        "boxes": [
+          {
+            "x_min": 0.985,
+            "y_min": 0.755,
+            "x_max": 0.995,
+            "y_max": 0.845
+          }
+        ]
+      }
+    ],
+    "example_id": 17
+  },
+  {
+    "prediction": [
+      {
+        "text": "The lung fields demonstrate normal degree of inflation.",
+        "boxes": null
+      },
+      {
+        "text": "Mild infiltrate is present at the left lung base.",
+        "boxes": [
+          {
+            "x_min": 0.595,
+            "y_min": 0.525,
+            "x_max": 0.935,
+            "y_max": 0.775
+          }
+        ]
+      },
+      {
+        "text": "There are no pleural effusions.",
+        "boxes": null
+      },
+      {
+        "text": "Costophrenic sulci are sharp.",
+        "boxes": null
+      },
+      {
+        "text": "The trachea is midline.",
+        "boxes": null
+      },
+      {
+        "text": "There is no evidence of hilar enlargement.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic aorta outlines normally.",
+        "boxes": null
+      },
+      {
+        "text": "The cardiac size is normal.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic spine demonstrates no significant degenerative changes.",
+        "boxes": null
+      },
+      {
+        "text": "Thoracic curvature is normal.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "The lung fields demonstrate normal degree of inflation.",
+        "boxes": null
+      },
+      {
+        "text": "Minimal infiltrate present left lower lung zone.",
+        "boxes": [
+          {
+            "x_min": 0.585,
+            "y_min": 0.495,
+            "x_max": 0.925,
+            "y_max": 0.775
+          }
+        ]
+      },
+      {
+        "text": "There are no pleural effusions.",
+        "boxes": null
+      },
+      {
+        "text": "Costophrenic sulci are sharp.",
+        "boxes": null
+      },
+      {
+        "text": "The trachea is midline.",
+        "boxes": null
+      },
+      {
+        "text": "There is no evidence of hilar enlargement.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic aorta outlines normally.",
+        "boxes": null
+      },
+      {
+        "text": "The cardiac size is normal.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic spine demonstrates no significant degenerative changes.",
+        "boxes": null
+      },
+      {
+        "text": "Thoracic curvature is normal.",
+        "boxes": null
+      }
+    ],
+    "example_id": 18
+  },
+  {
+    "prediction": [
+      {
+        "text": "The lung fields demonstrate normal degree of inflation.",
+        "boxes": null
+      },
+      {
+        "text": "There is no evidence of pneumonia.",
+        "boxes": null
+      },
+      {
+        "text": "There is a 7 mm nodular density left midlung zone.",
+        "boxes": [
+          {
+            "x_min": 0.795,
+            "y_min": 0.405,
+            "x_max": 0.835,
+            "y_max": 0.425
+          }
+        ]
+      },
+      {
+        "text": "There are no pleural effusions.",
+        "boxes": null
+      },
+      {
+        "text": "Costophrenic sulci are sharp.",
+        "boxes": null
+      },
+      {
+        "text": "The trachea is midline.",
+        "boxes": null
+      },
+      {
+        "text": "There is no evidence of hilar enlargement.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic aorta outlines normally.",
+        "boxes": null
+      },
+      {
+        "text": "The cardiac size is normal.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic spine demonstrates no significant degenerative changes.",
+        "boxes": null
+      },
+      {
+        "text": "Thoracic curvature is normal.",
+        "boxes": null
+      }
+    ],
+    "target": [
+      {
+        "text": "Small granulomas in both lung fields.",
+        "boxes": [
+          {
+            "x_min": 0.625,
+            "y_min": 0.195,
+            "x_max": 0.885,
+            "y_max": 0.695
+          },
+          {
+            "x_min": 0.175,
+            "y_min": 0.185,
+            "x_max": 0.455,
+            "y_max": 0.655
+          }
+        ]
+      },
+      {
+        "text": "There is no evidence of pneumonia.",
+        "boxes": null
+      },
+      {
+        "text": "The pulmonary interstitial markings are normal.",
+        "boxes": null
+      },
+      {
+        "text": "There are no pleural effusions.",
+        "boxes": null
+      },
+      {
+        "text": "Costophrenic sulci are sharp.",
+        "boxes": null
+      },
+      {
+        "text": "The trachea is midline.",
+        "boxes": null
+      },
+      {
+        "text": "There is no evidence of hilar enlargement.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic aorta outlines normally.",
+        "boxes": null
+      },
+      {
+        "text": "The cardiac size is normal.",
+        "boxes": null
+      },
+      {
+        "text": "The diaphragm is smooth.",
+        "boxes": null
+      },
+      {
+        "text": "The thoracic spine demonstrates no significant degenerative changes.",
+        "boxes": null
+      },
+      {
+        "text": "Thoracic curvature is normal.",
+        "boxes": null
+      }
+    ],
+    "example_id": 19
+  }
+]

@@ -1,0 +1,10 @@
+#@package __global__
+
+defaults:
+  - default
+  - override endpoints: azure_chat_openai
+  - _self_
+
+dataset:
+  name: reports_to_phrases
+  csv_path: "<your_path_to_cxr_reports>"

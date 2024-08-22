@@ -1,0 +1,48 @@
+{
+    "autoDocstring.docstringFormat": "sphinx-notypes",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.mypy_cache/**": true,
+        "**/.pytest_cache/**": true
+    },
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "flake8.args": [
+        "--config=${workspaceFolder}/.flake8",
+    ],
+    "isort.args": [
+        "--src=${workspaceFolder}",
+        "--settings=${workspaceFolder}/pyproject.toml",
+        "-l=120",
+    ],
+    "[python]": {
+        "editor.rulers": [
+            120
+        ],
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.unusedImports": "explicit"
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter",
+    },
+    "black-formatter.args": [
+        "--line-length=120",
+        "--config=${workspaceFolder}/pyproject.toml",
+    ],
+    "black-formatter.importStrategy": "fromEnvironment",
+    "rewrap.wrappingColumn": 120,
+    "mypy-type-checker.args": [
+        "--config-file=${workspaceFolder}/mypy.ini",
+    ],
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    "mypy-type-checker.preferDaemon": false,
+    "mypy-type-checker.reportingScope": "workspace",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+}

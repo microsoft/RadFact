@@ -1,0 +1,26 @@
+# This Dockerfile specifies the basic image, and installs miniconda.
+
+FROM nvcr.io/nvidia/pytorch:22.10-py3
+
+# Remove that full Anaconda folder to save space
+RUN rm -rf /opt/conda
+
+ARG user=radfact
+ARG userhome=/home/${user}
+
+# Add a user so that we don't run as root in the dev container
+RUN useradd -m ${user} && chown -R ${user} ${userhome}
+USER ${user}
+WORKDIR ${userhome}
+
+# Add miniconda.
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    bash Miniconda3-latest-Linux-x86_64.sh -b -p ${userhome}/miniconda && \
+    rm Miniconda3-latest-Linux-x86_64.sh && \
+    PATH=${userhome}/miniconda/bin:$PATH && \
+    conda init bash zsh && \
+    source "${userhome}/miniconda/bin/activate" && \
+    conda install -y -n base conda-libmamba-solver && \
+    conda config --set solver libmamba
+
+ENV PATH ${userhome}/miniconda/bin:$PATH

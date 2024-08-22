@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+    build,
+max-line-length = 120
+max-complexity = 25
+extend-select = B950
+extend-ignore =
+    E731,
+    W503,
+    E203,
+    E501,
+    E402,
