@@ -1,0 +1,9 @@
+# Do not add packages here unless required for PR builds, setup scripts, etc.
+name: radfact
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - setuptools==69.5.1
+  - pip=23.0.1
+  - python=3.10

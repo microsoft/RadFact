@@ -1,0 +1,88 @@
+
+[tool.black]
+line-length = 120
+target-version = ["py310"]
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+known_first_party = ["radfact"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.pylint]
+max-line-length = 120
+disable = [
+    "logging-fstring-interpolation",
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "no-value-for-parameter",
+    "no-name-in-module",
+    "no-member",
+]
+
+[build-system]
+requires = ["setuptools==69.5.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "radfact"
+version = "1.0.0"
+description = "RadFact: Code for the entailment verification metric RadFact"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Biomedical Imaging Team - Health Futures UK", email = "BioMedicalImaging@microsoft.com" },
+]
+maintainers = [
+    { name = "Biomedical Imaging Team - Health Futures UK", email = "BioMedicalImaging@microsoft.com" },
+]
+
+dependencies = [
+    # azure utils
+    "azureml-sdk",
+    "azureml-tensorboard",
+    "azure-keyvault",
+    "hi-ml-azure",
+    "hydra-core",
+
+    # llm utils
+    "hydra-core==1.3.2",
+    "langchain==0.1.4",
+    "langchain-openai==0.0.5",
+    "openai==1.10.0",
+    "pydantic==1.10.17",
+    "redis",
+
+    # radfact other
+    "numpy",
+    "pandas",
+]
+
+[project.optional-dependencies]
+dev = [
+    # linting, formatting, type checking
+    "black",
+    "flake8",
+    "ipykernel",
+    "mypy",
+    "pre-commit",
+    "pyyaml",
+    "pandas-stubs",
+    "types-Pillow",
+    "types-PyYAML",
+    "types-tqdm",
+]
+
+test = [
+    "mock",
+    "pandas-stubs",
+    "pytest",
+    "pytest-lazy-fixture",
+]
+
+[project.urls]
+repository = "https://github.com/microsoft/RadFact"
+[project.scripts]
+run_radfact = "radfact.cli.run_radfact:main"
+run_report_to_phrases = "radfact.cli.run_report_to_phrases:main"
