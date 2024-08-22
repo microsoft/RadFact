@@ -1,0 +1,2320 @@
+[
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "There is a new abnormal density filling most of the right hemithorax.",
+          "The visualized aerated left lung demonstrates no other malady.",
+          "Carotid arterial calcifications are present."
+        ],
+        "phrases_B": [
+          "The heart is borderline in size.",
+          "There is no evidence of CHF.",
+          "No infiltrate.",
+          "Evaluation of the retrocardiac left lower lobe is somewhat limited.",
+          "The diaphragm is well-visualized."
+        ]
+      },
+      "example_id": "example_0",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "There is a new abnormal density filling most of the right hemithorax.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "The visualized aerated left lung demonstrates no other malady.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Carotid arterial calcifications are present.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "The heart is borderline in size.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "There is no evidence of CHF.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No infiltrate.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Evaluation of the retrocardiac left lower lobe is somewhat limited.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "The diaphragm is well-visualized.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "Lungs are free of active infiltrate or mass.",
+          "Heart size is normal for this projection.",
+          "Previous sternotomy is noted.",
+          "Other bones and soft tissues are unremarkable."
+        ],
+        "phrases_B": [
+          "The heart size is normal.",
+          "The lungs are free of acute infiltrates."
+        ]
+      },
+      "example_id": "example_1",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "Lungs are free of active infiltrate or mass.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Heart size is normal for this projection.",
+            "status": "entailment",
+            "evidence": [
+              "The heart size is normal."
+            ]
+          },
+          {
+            "phrase": "Previous sternotomy is noted.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Other bones and soft tissues are unremarkable.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "The heart size is normal.",
+            "status": "entailment",
+            "evidence": [
+              "Heart size is normal for this projection."
+            ]
+          },
+          {
+            "phrase": "The lungs are free of acute infiltrates.",
+            "status": "entailment",
+            "evidence": [
+              "Lungs are free of active infiltrate or mass."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "Normal cardiac silhouette.",
+          "Lungs are clear.",
+          "No acute fractures in the left ribs."
+        ],
+        "phrases_B": [
+          "There are no displaced right rib fractures.",
+          "The heart size is normal.",
+          "The lungs are clear.",
+          "There is no pneumothorax."
+        ]
+      },
+      "example_id": "example_2",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "Normal cardiac silhouette.",
+            "status": "entailment",
+            "evidence": [
+              "The heart size is normal."
+            ]
+          },
+          {
+            "phrase": "Lungs are clear.",
+            "status": "entailment",
+            "evidence": [
+              "The lungs are clear."
+            ]
+          },
+          {
+            "phrase": "No acute fractures in the left ribs.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "There are no displaced right rib fractures.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "The heart size is normal.",
+            "status": "entailment",
+            "evidence": [
+              "Normal cardiac silhouette."
+            ]
+          },
+          {
+            "phrase": "The lungs are clear.",
+            "status": "entailment",
+            "evidence": [
+              "Lungs are clear."
+            ]
+          },
+          {
+            "phrase": "There is no pneumothorax.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "Normal heart size.",
+          "Increased bilateral perihilar infiltrates.",
+          "Increased lower lobe infiltrates left greater than right.",
+          "A VP shunt is still in place."
+        ],
+        "phrases_B": [
+          "An enlarged heart.",
+          "Stable pacemaker leads.",
+          "Bilateral pleural effusions are again noted."
+        ]
+      },
+      "example_id": "example_3",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "Normal heart size.",
+            "status": "contradiction",
+            "evidence": [
+              "An enlarged heart."
+            ]
+          },
+          {
+            "phrase": "Increased bilateral perihilar infiltrates.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Increased lower lobe infiltrates left greater than right.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "A VP shunt is still in place.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "An enlarged heart.",
+            "status": "contradiction",
+            "evidence": [
+              "Normal heart size."
+            ]
+          },
+          {
+            "phrase": "Stable pacemaker leads.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Bilateral pleural effusions are again noted.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "Development of diffuse bilateral airspace disease.",
+          "No pleural fluid.",
+          "Cardiac outline is not enlarged.",
+          "Widening of the mediastinum."
+        ],
+        "phrases_B": [
+          "Lower lung opacities similar to the prior.",
+          "There is no pleural fluid.",
+          "Heart mildly enlarged.",
+          "Pulmonary arteries mildly prominent.",
+          "Surgical clips in the upper abdomen.",
+          "Thoracolumbar scoliosis."
+        ]
+      },
+      "example_id": "example_4",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "Development of diffuse bilateral airspace disease.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No pleural fluid.",
+            "status": "entailment",
+            "evidence": [
+              "There is no pleural fluid."
+            ]
+          },
+          {
+            "phrase": "Cardiac outline is not enlarged.",
+            "status": "contradiction",
+            "evidence": [
+              "Heart mildly enlarged."
+            ]
+          },
+          {
+            "phrase": "Widening of the mediastinum.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "Lower lung opacities similar to the prior.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "There is no pleural fluid.",
+            "status": "entailment",
+            "evidence": [
+              "No pleural fluid."
+            ]
+          },
+          {
+            "phrase": "Heart mildly enlarged.",
+            "status": "contradiction",
+            "evidence": [
+              "Cardiac outline is not enlarged."
+            ]
+          },
+          {
+            "phrase": "Pulmonary arteries mildly prominent.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Surgical clips in the upper abdomen.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Thoracolumbar scoliosis.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "Heart size is normal.",
+          "Strandy densities at the left lung base are noted.",
+          "Aside from strandy densities at the left lung base, lungs are clear."
+        ],
+        "phrases_B": [
+          "The heart size is normal.",
+          "The right hemithorax is clear.",
+          "There is blunting of the left CP angle.",
+          "There is a linear area of increased radiodensity in the left retrocardiac region."
+        ]
+      },
+      "example_id": "example_5",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "Heart size is normal.",
+            "status": "entailment",
+            "evidence": [
+              "The heart size is normal."
+            ]
+          },
+          {
+            "phrase": "Strandy densities at the left lung base are noted.",
+            "status": "entailment",
+            "evidence": [
+              "There is a linear area of increased radiodensity in the left retrocardiac region."
+            ]
+          },
+          {
+            "phrase": "Aside from strandy densities at the left lung base, lungs are clear.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "The heart size is normal.",
+            "status": "entailment",
+            "evidence": [
+              "Heart size is normal."
+            ]
+          },
+          {
+            "phrase": "The right hemithorax is clear.",
+            "status": "entailment",
+            "evidence": [
+              "Aside from strandy densities at the left lung base, lungs are clear."
+            ]
+          },
+          {
+            "phrase": "There is blunting of the left CP angle.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "There is a linear area of increased radiodensity in the left retrocardiac region.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "Demonstrates borderline cardiomegaly.",
+          "Lung fields are clear.",
+          "Multiple metallic foreign bodies overlie the left arm and left lateral chest or breast."
+        ],
+        "phrases_B": [
+          "Borderline cardiomegaly.",
+          "Lung fields are clear.",
+          "There are healed fractures of the left sixth and seventh posterior ribs."
+        ]
+      },
+      "example_id": "example_6",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "Demonstrates borderline cardiomegaly.",
+            "status": "entailment",
+            "evidence": [
+              "Borderline cardiomegaly."
+            ]
+          },
+          {
+            "phrase": "Lung fields are clear.",
+            "status": "entailment",
+            "evidence": [
+              "Lung fields are clear."
+            ]
+          },
+          {
+            "phrase": "Multiple metallic foreign bodies overlie the left arm and left lateral chest or breast.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "Borderline cardiomegaly.",
+            "status": "entailment",
+            "evidence": [
+              "Demonstrates borderline cardiomegaly."
+            ]
+          },
+          {
+            "phrase": "Lung fields are clear.",
+            "status": "entailment",
+            "evidence": [
+              "Lung fields are clear."
+            ]
+          },
+          {
+            "phrase": "There are healed fractures of the left sixth and seventh posterior ribs.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "The heart is within normal limits.",
+          "The lungs are within normal limits.",
+          "The mediastinal structures are within normal limits.",
+          "There are no osseous abnormalities."
+        ],
+        "phrases_B": [
+          "Lungs are well expanded and clear.",
+          "Cardiac silhouette appears normal.",
+          "No fractures are noted.",
+          "There is no pneumothorax.",
+          "There is no pleural fluid."
+        ]
+      },
+      "example_id": "example_7",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment",
+            "evidence": [
+              "Cardiac silhouette appears normal."
+            ]
+          },
+          {
+            "phrase": "The lungs are within normal limits.",
+            "status": "entailment",
+            "evidence": [
+              "Lungs are well expanded and clear."
+            ]
+          },
+          {
+            "phrase": "The mediastinal structures are within normal limits.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "There are no osseous abnormalities.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "Lungs are well expanded and clear.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Cardiac silhouette appears normal.",
+            "status": "entailment",
+            "evidence": [
+              "The heart is within normal limits."
+            ]
+          },
+          {
+            "phrase": "No fractures are noted.",
+            "status": "entailment",
+            "evidence": [
+              "There are no osseous abnormalities."
+            ]
+          },
+          {
+            "phrase": "There is no pneumothorax.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "There is no pleural fluid.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "No fractures are evident.",
+          "Heart size appears normal.",
+          "Lungs are underexpanded.",
+          "No pneumothorax is noted."
+        ],
+        "phrases_B": [
+          "The heart size is enlarged.",
+          "Lungs are clear."
+        ]
+      },
+      "example_id": "example_8",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "No fractures are evident.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Heart size appears normal.",
+            "status": "contradiction",
+            "evidence": [
+              "The heart size is enlarged."
+            ]
+          },
+          {
+            "phrase": "Lungs are underexpanded.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No pneumothorax is noted.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "The heart size is enlarged.",
+            "status": "contradiction",
+            "evidence": [
+              "Heart size appears normal."
+            ]
+          },
+          {
+            "phrase": "Lungs are clear.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "There is blunting of the right costophrenic angle.",
+          "The heart is borderline in size.",
+          "There is uncoiling of the aorta.",
+          "No obvious infiltrate is noted."
+        ],
+        "phrases_B": [
+          "There is density in the right lower lung field.",
+          "The diaphragm is elevated.",
+          "Infiltrate in the right lower lobe.",
+          "Atelectasis in the right lower lobe."
+        ]
+      },
+      "example_id": "example_9",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "There is blunting of the right costophrenic angle.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "The heart is borderline in size.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "There is uncoiling of the aorta.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No obvious infiltrate is noted.",
+            "status": "contradiction",
+            "evidence": [
+              "Infiltrate in the right lower lobe."
+            ]
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "There is density in the right lower lung field.",
+            "status": "entailment",
+            "evidence": [
+              "There is blunting of the right costophrenic angle."
+            ]
+          },
+          {
+            "phrase": "The diaphragm is elevated.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Infiltrate in the right lower lobe.",
+            "status": "contradiction",
+            "evidence": [
+              "No obvious infiltrate is noted."
+            ]
+          },
+          {
+            "phrase": "Atelectasis in the right lower lobe.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "The heart is within normal limits.",
+          "The lungs are within normal limits.",
+          "The mediastinal structures are within normal limits.",
+          "Stable arthritis about the lower thoracic spine."
+        ],
+        "phrases_B": [
+          "No suspicious pulmonary consolidation is present.",
+          "No pleural effusion is present.",
+          "No pneumothorax is present.",
+          "Cardiomediastinal silhouette is within normal limits.",
+          "Pulmonary vasculature is within normal limits.",
+          "Osseous structures are unremarkable."
+        ]
+      },
+      "example_id": "example_10",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment",
+            "evidence": [
+              "Cardiomediastinal silhouette is within normal limits."
+            ]
+          },
+          {
+            "phrase": "The lungs are within normal limits.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "The mediastinal structures are within normal limits.",
+            "status": "entailment",
+            "evidence": [
+              "Cardiomediastinal silhouette is within normal limits."
+            ]
+          },
+          {
+            "phrase": "Stable arthritis about the lower thoracic spine.",
+            "status": "contradiction",
+            "evidence": [
+              "Osseous structures are unremarkable."
+            ]
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "No suspicious pulmonary consolidation is present.",
+            "status": "entailment",
+            "evidence": [
+              "The lungs are within normal limits."
+            ]
+          },
+          {
+            "phrase": "No pleural effusion is present.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No pneumothorax is present.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Cardiomediastinal silhouette is within normal limits.",
+            "status": "entailment",
+            "evidence": [
+              "The heart is within normal limits.",
+              "The mediastinal structures are within normal limits."
+            ]
+          },
+          {
+            "phrase": "Pulmonary vasculature is within normal limits.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Osseous structures are unremarkable.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "study_id": "N/A",
+      "input": {
+        "phrases_A": [
+          "No lobar consolidation.",
+          "No pleural effusion.",
+          "Median sternotomy wires noted.",
+          "Degenerative changes in the spine."
+        ],
+        "phrases_B": [
+          "The cardiac silhouette is mildly enlarged on the PA view.",
+          "No pleural effusion is identified.",
+          "No pneumothorax is identified.",
+          "Multilevel degenerative disease is present in the spine.",
+          "Mild compression deformities in the lower thoracic spine are again noted.",
+          "Mild compression deformities in the superior lumbar spine are again noted."
+        ]
+      },
+      "example_id": "example_11",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "phrase": "No lobar consolidation.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No pleural effusion.",
+            "status": "entailment",
+            "evidence": [
+              "No pleural effusion is identified."
+            ]
+          },
+          {
+            "phrase": "Median sternotomy wires noted.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Degenerative changes in the spine.",
+            "status": "entailment",
+            "evidence": [
+              "Multilevel degenerative disease is present in the spine."
+            ]
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "phrase": "The cardiac silhouette is mildly enlarged on the PA view.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "No pleural effusion is identified.",
+            "status": "entailment",
+            "evidence": [
+              "No pleural effusion."
+            ]
+          },
+          {
+            "phrase": "No pneumothorax is identified.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Multilevel degenerative disease is present in the spine.",
+            "status": "entailment",
+            "evidence": [
+              "Degenerative changes in the spine."
+            ]
+          },
+          {
+            "phrase": "Mild compression deformities in the lower thoracic spine are again noted.",
+            "status": "neutral",
+            "evidence": []
+          },
+          {
+            "phrase": "Mild compression deformities in the superior lumbar spine are again noted.",
+            "status": "neutral",
+            "evidence": []
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_12",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart is stable.",
+          "No infiltrate is seen.",
+          "No pneumothorax is seen."
+        ],
+        "phrases_B": [
+          "Interstitial opacities are similar to the prior exam.",
+          "No pneumothorax.",
+          "No effusion.",
+          "Unremarkable cardiac silhouette."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "The heart is stable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Interstitial opacities are similar to the prior exam."
+            ],
+            "phrase": "No infiltrate is seen.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "No pneumothorax."
+            ],
+            "phrase": "No pneumothorax is seen.",
+            "status": "entailment"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "No infiltrate is seen."
+            ],
+            "phrase": "Interstitial opacities are similar to the prior exam.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "No pneumothorax is seen."
+            ],
+            "phrase": "No pneumothorax.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "No effusion.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Unremarkable cardiac silhouette.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_13",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "There are postsurgical changes in the left lower chest with chain staples.",
+          "There is a small left pleural effusion.",
+          "Right lung is clear without focal abnormality.",
+          "There is no pneumothorax."
+        ],
+        "phrases_B": [
+          "Persistent well-demarcated density in the region of the fissure on the right slightly smaller in size.",
+          "Left lung is clear.",
+          "Small right pleural effusion is noted.",
+          "No pneumothorax is seen."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "There are postsurgical changes in the left lower chest with chain staples.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is a small left pleural effusion.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Persistent well-demarcated density in the region of the fissure on the right slightly smaller in size."
+            ],
+            "phrase": "Right lung is clear without focal abnormality.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "No pneumothorax is seen."
+            ],
+            "phrase": "There is no pneumothorax.",
+            "status": "entailment"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "Right lung is clear without focal abnormality."
+            ],
+            "phrase": "Persistent well-demarcated density in the region of the fissure on the right slightly smaller in size.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Left lung is clear.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Small right pleural effusion is noted.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There is no pneumothorax."
+            ],
+            "phrase": "No pneumothorax is seen.",
+            "status": "entailment"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_14",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The lungs are clear.",
+          "The cardiomediastinal silhouette is unremarkable.",
+          "There are no pleural effusions."
+        ],
+        "phrases_B": [
+          "The cardiomediastinal silhouette appears unremarkable.",
+          "Implanted defibrillator device remains in place.",
+          "Appearance of both lung fields is stable.",
+          "Lungs remain hyperinflated."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "The lungs are clear.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette appears unremarkable."
+            ],
+            "phrase": "The cardiomediastinal silhouette is unremarkable.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There are no pleural effusions.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "The cardiomediastinal silhouette appears unremarkable.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Implanted defibrillator device remains in place.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Appearance of both lung fields is stable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Lungs remain hyperinflated.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_15",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart size is enlarged.",
+          "Opacification at the left lung bases.",
+          "Pulmonary hypervascularity."
+        ],
+        "phrases_B": [
+          "The heart is within normal limits.",
+          "There is abnormal opacification with atelectasis in the lingula.",
+          "Port overlies the right chest.",
+          "Pulmonary nodule is noted in the left upper lobe."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The heart is within normal limits."
+            ],
+            "phrase": "The heart size is enlarged.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "There is abnormal opacification with atelectasis in the lingula."
+            ],
+            "phrase": "Opacification at the left lung bases.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Pulmonary hypervascularity.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The heart size is enlarged."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is abnormal opacification with atelectasis in the lingula.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Port overlies the right chest.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Pulmonary nodule is noted in the left upper lobe.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_16",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart is within normal limits.",
+          "Pulmonary vascularity is unremarkable.",
+          "There are patchy bibasilar infiltrates."
+        ],
+        "phrases_B": [
+          "The heart is stable.",
+          "Multiple bilateral rib fractures are identified.",
+          "No pneumothorax is seen.",
+          "No infiltrate is identified."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "The heart is within normal limits.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Pulmonary vascularity is unremarkable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "No infiltrate is identified."
+            ],
+            "phrase": "There are patchy bibasilar infiltrates.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "The heart is stable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Multiple bilateral rib fractures are identified.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "No pneumothorax is seen.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There are patchy bibasilar infiltrates."
+            ],
+            "phrase": "No infiltrate is identified.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_17",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The lungs are clear.",
+          "The cardiomediastinal silhouette is unremarkable.",
+          "There are no pleural effusions."
+        ],
+        "phrases_B": [
+          "There is minimal platelike atelectasis at the left lung base.",
+          "The heart is within normal limits.",
+          "The mediastinal structures are within normal limits.",
+          "There are no osseous abnormalities."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "There is minimal platelike atelectasis at the left lung base."
+            ],
+            "phrase": "The lungs are clear.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "The heart is within normal limits."
+            ],
+            "phrase": "The cardiomediastinal silhouette is unremarkable.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There are no pleural effusions.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The lungs are clear."
+            ],
+            "phrase": "There is minimal platelike atelectasis at the left lung base.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "The mediastinal structures are within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There are no osseous abnormalities.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_18",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart is within normal limits.",
+          "The lungs are within normal limits.",
+          "The mediastinal structures are within normal limits.",
+          "There are no osseous abnormalities."
+        ],
+        "phrases_B": [
+          "The lungs are clear.",
+          "The cardiomediastinal silhouette is unremarkable.",
+          "There are no pleural effusions.",
+          "There is mild thoracic spondylosis."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "The lungs are clear."
+            ],
+            "phrase": "The lungs are within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "The mediastinal structures are within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "There is mild thoracic spondylosis."
+            ],
+            "phrase": "There are no osseous abnormalities.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The lungs are within normal limits."
+            ],
+            "phrase": "The lungs are clear.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "The heart is within normal limits.",
+              "The mediastinal structures are within normal limits."
+            ],
+            "phrase": "The cardiomediastinal silhouette is unremarkable.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There are no pleural effusions.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There are no osseous abnormalities."
+            ],
+            "phrase": "There is mild thoracic spondylosis.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_19",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart size is normal.",
+          "A small nodule overlying the anterior aspect of the left 5th rib measures up to about 9.5 mm.",
+          "Interstitial markings are mildly prominent in both lungs."
+        ],
+        "phrases_B": [
+          "The heart size is within normal limits.",
+          "There is a questionable cavitary lesion in the right mid lung measuring 4.3 x 3.4 cm.",
+          "The lungs are otherwise clear."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The heart size is within normal limits."
+            ],
+            "phrase": "The heart size is normal.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "A small nodule overlying the anterior aspect of the left 5th rib measures up to about 9.5 mm.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "The lungs are otherwise clear."
+            ],
+            "phrase": "Interstitial markings are mildly prominent in both lungs.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The heart size is normal."
+            ],
+            "phrase": "The heart size is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is a questionable cavitary lesion in the right mid lung measuring 4.3 x 3.4 cm.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Interstitial markings are mildly prominent in both lungs."
+            ],
+            "phrase": "The lungs are otherwise clear.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_20",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "Heart size is normal.",
+          "Subsegmental atelectasis left lung base.",
+          "Small left pleural effusion similar to the prior exam."
+        ],
+        "phrases_B": [
+          "The heart is within normal limits.",
+          "No infiltrate is seen.",
+          "No pleural effusion is seen."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The heart is within normal limits."
+            ],
+            "phrase": "Heart size is normal.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Subsegmental atelectasis left lung base.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "No pleural effusion is seen."
+            ],
+            "phrase": "Small left pleural effusion similar to the prior exam.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "Heart size is normal."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "No infiltrate is seen.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Small left pleural effusion similar to the prior exam."
+            ],
+            "phrase": "No pleural effusion is seen.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_21",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "A moderate size left pleural effusion slightly larger in size.",
+          "Pacemaker is unchanged.",
+          "Right lung is clear.",
+          "There is persistent consolidation in the left lung base."
+        ],
+        "phrases_B": [
+          "Patchy bilateral infiltrates.",
+          "The heart is normal in size.",
+          "No pleural effusion is seen."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "No pleural effusion is seen."
+            ],
+            "phrase": "A moderate size left pleural effusion slightly larger in size.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Pacemaker is unchanged.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Patchy bilateral infiltrates."
+            ],
+            "phrase": "Right lung is clear.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is persistent consolidation in the left lung base.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "Patchy bilateral infiltrates.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "The heart is normal in size.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "A moderate size left pleural effusion slightly larger in size."
+            ],
+            "phrase": "No pleural effusion is seen.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_22",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "Top normal heart size.",
+          "Calcification and uncoiling of aorta.",
+          "No evidence of infiltrate.",
+          "Old fracture deformity LEFT clavicle."
+        ],
+        "phrases_B": [
+          "The heart is enlarged.",
+          "There is blunting of the right costophrenic sulcus with adjacent infiltrate.",
+          "Old left lower rib fracture deformity is observed."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The heart is enlarged."
+            ],
+            "phrase": "Top normal heart size.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Calcification and uncoiling of aorta.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There is blunting of the right costophrenic sulcus with adjacent infiltrate."
+            ],
+            "phrase": "No evidence of infiltrate.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Old fracture deformity LEFT clavicle.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "Top normal heart size."
+            ],
+            "phrase": "The heart is enlarged.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "No evidence of infiltrate."
+            ],
+            "phrase": "There is blunting of the right costophrenic sulcus with adjacent infiltrate.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Old left lower rib fracture deformity is observed.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_23",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "Cardiomegaly.",
+          "Redistribution of pulmonary blood flow.",
+          "Small bilateral pleural effusions.",
+          "Discoid/subsegmental atelectasis at both lung bases, greater on the right."
+        ],
+        "phrases_B": [
+          "Cardiomegaly.",
+          "Redistribution of pulmonary blood flow.",
+          "Bilateral interstitial pulmonary edema.",
+          "A moderate size right pleural effusion."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "Cardiomegaly."
+            ],
+            "phrase": "Cardiomegaly.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Redistribution of pulmonary blood flow."
+            ],
+            "phrase": "Redistribution of pulmonary blood flow.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "A moderate size right pleural effusion."
+            ],
+            "phrase": "Small bilateral pleural effusions.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Discoid/subsegmental atelectasis at both lung bases, greater on the right.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "Cardiomegaly."
+            ],
+            "phrase": "Cardiomegaly.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Redistribution of pulmonary blood flow."
+            ],
+            "phrase": "Redistribution of pulmonary blood flow.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Bilateral interstitial pulmonary edema.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Small bilateral pleural effusions."
+            ],
+            "phrase": "A moderate size right pleural effusion.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_24",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart size is normal.",
+          "Parenchymal opacity in the left suprahilar region and left upper lung is less impressive than on the previous study.",
+          "Right lung remains clear.",
+          "Port-A-Cath remains in place."
+        ],
+        "phrases_B": [
+          "Heart remains enlarged.",
+          "Previously present blunting of the right costophrenic angle has essentially resolved.",
+          "Lungs are clear.",
+          "Pacemaker remains in place."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "Heart remains enlarged."
+            ],
+            "phrase": "The heart size is normal.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "Lungs are clear."
+            ],
+            "phrase": "Parenchymal opacity in the left suprahilar region and left upper lung is less impressive than on the previous study.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "Lungs are clear."
+            ],
+            "phrase": "Right lung remains clear.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Port-A-Cath remains in place.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The heart size is normal."
+            ],
+            "phrase": "Heart remains enlarged.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Previously present blunting of the right costophrenic angle has essentially resolved.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Parenchymal opacity in the left suprahilar region and left upper lung is less impressive than on the previous study."
+            ],
+            "phrase": "Lungs are clear.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Pacemaker remains in place.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_25",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The heart is within normal limits.",
+          "Pulmonary vascularity is unremarkable.",
+          "There are patchy bibasilar infiltrates."
+        ],
+        "phrases_B": [
+          "The heart is within normal limits.",
+          "No infiltrate is seen.",
+          "No pleural effusion is seen."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The heart is within normal limits."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Pulmonary vascularity is unremarkable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "No infiltrate is seen."
+            ],
+            "phrase": "There are patchy bibasilar infiltrates.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The heart is within normal limits."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "There are patchy bibasilar infiltrates."
+            ],
+            "phrase": "No infiltrate is seen.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "No pleural effusion is seen.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_26",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "Right-sided pneumothorax of about 30-40% is now evident.",
+          "No pneumothorax on the left is noted.",
+          "Cardiac silhouette is normal in size."
+        ],
+        "phrases_B": [
+          "Nodular densities in both lungs.",
+          "Heart is normal in size.",
+          "No pneumothorax is seen."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "No pneumothorax is seen."
+            ],
+            "phrase": "Right-sided pneumothorax of about 30-40% is now evident.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "No pneumothorax is seen."
+            ],
+            "phrase": "No pneumothorax on the left is noted.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Heart is normal in size."
+            ],
+            "phrase": "Cardiac silhouette is normal in size.",
+            "status": "entailment"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "Nodular densities in both lungs.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Cardiac silhouette is normal in size."
+            ],
+            "phrase": "Heart is normal in size.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Right-sided pneumothorax of about 30-40% is now evident."
+            ],
+            "phrase": "No pneumothorax is seen.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_27",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "Nasogastric tube overlies the stomach.",
+          "Increased opacification at the left lung base.",
+          "Element of atelectasis cannot be excluded.",
+          "The right hemithorax is clear."
+        ],
+        "phrases_B": [
+          "Tracheostomy tube is stable.",
+          "Right-sided PICC line is stable.",
+          "Increased density in the right lower lung field.",
+          "The left lung demonstrates linear platelike atelectasis in the mid to lower lung field."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "Nasogastric tube overlies the stomach.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Increased opacification at the left lung base.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "The left lung demonstrates linear platelike atelectasis in the mid to lower lung field."
+            ],
+            "phrase": "Element of atelectasis cannot be excluded.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Increased density in the right lower lung field."
+            ],
+            "phrase": "The right hemithorax is clear.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "Tracheostomy tube is stable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Right-sided PICC line is stable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "The right hemithorax is clear."
+            ],
+            "phrase": "Increased density in the right lower lung field.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "The left lung demonstrates linear platelike atelectasis in the mid to lower lung field.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_28",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "There is a right-sided hydropneumothorax observed with greater than 50% of the right lung collapsed.",
+          "Fluid levels are noted right lower hemithorax.",
+          "Left hemithorax clear."
+        ],
+        "phrases_B": [
+          "The amount of pleural fluid on the right is markedly diminished.",
+          "There is a right-sided pneumothorax of at least 50%.",
+          "Infiltrate in the left lung appears similar.",
+          "Infiltrate within the aerated right lung is again noted."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "There is a right-sided hydropneumothorax observed with greater than 50% of the right lung collapsed.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "The amount of pleural fluid on the right is markedly diminished."
+            ],
+            "phrase": "Fluid levels are noted right lower hemithorax.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Infiltrate in the left lung appears similar."
+            ],
+            "phrase": "Left hemithorax clear.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "The amount of pleural fluid on the right is markedly diminished.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There is a right-sided hydropneumothorax observed with greater than 50% of the right lung collapsed."
+            ],
+            "phrase": "There is a right-sided pneumothorax of at least 50%.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Left hemithorax clear."
+            ],
+            "phrase": "Infiltrate in the left lung appears similar.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Infiltrate within the aerated right lung is again noted.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_29",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "Heart size is normal.",
+          "There is a stable nodule in the left mid lung field.",
+          "Lungs are essentially clear."
+        ],
+        "phrases_B": [
+          "The heart is within normal limits.",
+          "There is patchy infiltrate right lung base.",
+          "Small right pleural effusion.",
+          "Left lung is clear."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The heart is within normal limits."
+            ],
+            "phrase": "Heart size is normal.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is a stable nodule in the left mid lung field.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There is patchy infiltrate right lung base."
+            ],
+            "phrase": "Lungs are essentially clear.",
+            "status": "contradiction"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "Heart size is normal."
+            ],
+            "phrase": "The heart is within normal limits.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "Lungs are essentially clear."
+            ],
+            "phrase": "There is patchy infiltrate right lung base.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "Small right pleural effusion.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Lungs are essentially clear."
+            ],
+            "phrase": "Left lung is clear.",
+            "status": "entailment"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_30",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The lungs are unremarkable.",
+          "There is stable cardiomegaly.",
+          "There are no pleural effusions.",
+          "There is chronic fracture right proximal humeral shaft with large amount of callus formation."
+        ],
+        "phrases_B": [
+          "The lungs are clear.",
+          "The cardiomediastinal silhouette is unremarkable.",
+          "There are no pleural effusions."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "The lungs are clear."
+            ],
+            "phrase": "The lungs are unremarkable.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "There is stable cardiomegaly.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "There are no pleural effusions."
+            ],
+            "phrase": "There are no pleural effusions.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is chronic fracture right proximal humeral shaft with large amount of callus formation.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The lungs are unremarkable."
+            ],
+            "phrase": "The lungs are clear.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [
+              "There is stable cardiomegaly."
+            ],
+            "phrase": "The cardiomediastinal silhouette is unremarkable.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "There are no pleural effusions."
+            ],
+            "phrase": "There are no pleural effusions.",
+            "status": "entailment"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_31",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The cardiomediastinal silhouette appears unremarkable.",
+          "Interstitial markings are increased throughout both lungs.",
+          "There is mild improved aeration in the left lower lung field."
+        ],
+        "phrases_B": [
+          "There is no pneumothorax.",
+          "Left basilar pleural parenchymal opacity.",
+          "Right lung is clear.",
+          "Heart appears within normal limits in size."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "The cardiomediastinal silhouette appears unremarkable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Right lung is clear."
+            ],
+            "phrase": "Interstitial markings are increased throughout both lungs.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is mild improved aeration in the left lower lung field.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [],
+            "phrase": "There is no pneumothorax.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Left basilar pleural parenchymal opacity.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "Interstitial markings are increased throughout both lungs."
+            ],
+            "phrase": "Right lung is clear.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette appears unremarkable."
+            ],
+            "phrase": "Heart appears within normal limits in size.",
+            "status": "entailment"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_32",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "The lungs are clear.",
+          "The cardiomediastinal silhouette is unremarkable.",
+          "There are no pleural effusions."
+        ],
+        "phrases_B": [
+          "Heterogeneous opacities in both lungs are present.",
+          "Mediastinum is normal.",
+          "Osseous structures are stable."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "Heterogeneous opacities in both lungs are present."
+            ],
+            "phrase": "The lungs are clear.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "The cardiomediastinal silhouette is unremarkable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "There are no pleural effusions.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "The lungs are clear."
+            ],
+            "phrase": "Heterogeneous opacities in both lungs are present.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [
+              "The cardiomediastinal silhouette is unremarkable."
+            ],
+            "phrase": "Mediastinum is normal.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "Osseous structures are stable.",
+            "status": "neutral"
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "example_33",
+      "study_id": "nan",
+      "input": {
+        "phrases_A": [
+          "There are new increased bilateral perihilar lung markings.",
+          "There is no focal consolidation.",
+          "The cardiomediastinal silhouette is unremarkable.",
+          "There is bilateral pleural effusion."
+        ],
+        "phrases_B": [
+          "There is pleural space widening along the lateral aspect of the left lower lung field.",
+          "There are abnormal increased interstitial markings in the left lower lung.",
+          "Probable subsegmental atelectasis in the left lower lung.",
+          "Right lung is clear."
+        ]
+      },
+      "rationale": "rationale",
+      "output": {
+        "phrases_A_evidenced": [
+          {
+            "evidence": [
+              "Right lung is clear."
+            ],
+            "phrase": "There are new increased bilateral perihilar lung markings.",
+            "status": "contradiction"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is no focal consolidation.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "The cardiomediastinal silhouette is unremarkable.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "There is bilateral pleural effusion.",
+            "status": "neutral"
+          }
+        ],
+        "phrases_B_evidenced": [
+          {
+            "evidence": [
+              "There is bilateral pleural effusion."
+            ],
+            "phrase": "There is pleural space widening along the lateral aspect of the left lower lung field.",
+            "status": "entailment"
+          },
+          {
+            "evidence": [],
+            "phrase": "There are abnormal increased interstitial markings in the left lower lung.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [],
+            "phrase": "Probable subsegmental atelectasis in the left lower lung.",
+            "status": "neutral"
+          },
+          {
+            "evidence": [
+              "There are new increased bilateral perihilar lung markings."
+            ],
+            "phrase": "Right lung is clear.",
+            "status": "contradiction"
+          }
+        ]
+      }
+    }
+  ]
