@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug Tests",
+            "type": "python",
+            "request": "launch",
+            "program": "${userHome}/miniconda3/envs/radfact/bin/pytest",
+            "purpose": [
+                "debug-test"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Debug LLM pipeline for report_to_phrases",
+            "type": "python",
+            "request": "launch",
+            "program": "src/radfact/cli/run_report_to_phrases.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "processing.start_index=0",
+                "processing.end_index=10",
+                "processing.batch_size=2",
+                "dataset.csv_path=<your_path_to_cxr_reports>",
+            ]
+        },
+    ]
+}
