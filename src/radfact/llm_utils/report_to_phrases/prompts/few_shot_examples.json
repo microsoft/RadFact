@@ -1,0 +1,392 @@
+[
+  {
+    "example_id": "few_shot1",
+    "findings_text": "The endotracheal tube is appropriately positioned 4.8 cm from the carina. An enteric tube is present and its tip is in the stomach. A right internal jugular central venous catheter is present and its tip is in the mid SVC. Bilateral parenchymal opacities are present, mainly at the bases, consistent with an infectious process. Interstitial opacities have worsened, indicating increased edema. A small left pleural effusion is stable. The right pleural effusion has slightly increased in size. No pneumothorax is present. The cardiomediastinal silhouette is normal.",
+    "parsed_report": {
+      "id": "few_shot1",
+      "sentence_list": [
+        {
+          "orig": "The endotracheal tube is appropriately positioned 4.8 cm from the carina.",
+          "new": [
+            "The endotracheal tube is appropriately positioned 4.8 cm from the carina."
+          ]
+        },
+        {
+          "orig": "An enteric tube is present and its tip is in the stomach.",
+          "new": [
+            "An enteric tube is present and its tip is in the stomach."
+          ]
+        },
+        {
+          "orig": "A right internal jugular central venous catheter is present and its tip is in the mid SVC.",
+          "new": [
+            "A right internal jugular central venous catheter is present and its tip is in the mid SVC."
+          ]
+        },
+        {
+          "orig": "Bilateral parenchymal opacities are present, mainly at the bases, consistent with an infectious process.",
+          "new": [
+            "Bilateral parenchymal opacities are present, mainly at the bases."
+          ]
+        },
+        {
+          "orig": "Interstitial opacities have worsened, indicating increased edema.",
+          "new": [
+            "Interstitial opacities have worsened, indicating increased edema."
+          ]
+        },
+        {
+          "orig": "A small left pleural effusion is stable.",
+          "new": [
+            "A small left pleural effusion is stable."
+          ]
+        },
+        {
+          "orig": "The right pleural effusion has slightly increased in size.",
+          "new": [
+            "The right pleural effusion has slightly increased in size."
+          ]
+        },
+        {
+          "orig": "No pneumothorax is present.",
+          "new": [
+            "No pneumothorax is present."
+          ]
+        },
+        {
+          "orig": "The cardiomediastinal silhouette is normal.",
+          "new": [
+            "The cardiomediastinal silhouette is normal."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_1",
+    "example_rationale": "Positive finding."
+  },
+  {
+    "example_id": "few_shot2",
+    "findings_text": "The perihilar opacities have increased since the last examination, along with pulmonary vascular congestion and widespread opacity. There is moderate cardiomegaly and a new small left-sided pleural effusion. No pneumothorax is observed.",
+    "parsed_report": {
+      "id": "few_shot2",
+      "sentence_list": [
+        {
+          "orig": "The perihilar opacities have increased since the last examination, along with pulmonary vascular congestion and widespread opacity.",
+          "new": [
+            "The perihilar opacities have increased since the last examination.",
+            "Pulmonary vascular congestion has increased since the last examination.",
+            "Widespread opacity has increased since the last examination."
+          ]
+        },
+        {
+          "orig": "There is moderate cardiomegaly and a new small left-sided pleural effusion.",
+          "new": [
+            "There is moderate cardiomegaly.",
+            "New small left-sided pleural effusion."
+          ]
+        },
+        {
+          "orig": "No pneumothorax is observed.",
+          "new": [
+            "No pneumothorax is observed."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_2",
+    "example_rationale": "Multiple positive findings"
+  },
+  {
+    "example_id": "few_shot3",
+    "findings_text": "Chest x-rays were taken in the upright and lateral positions. Diffuse peribronchovascular opacities are observed throughout the lungs, which may indicate diffuse bronchopneumonia. No lobar consolidation, effusion, or pneumothorax is detected. The cardiomediastinal silhouette appears normal, and the bony structures are intact. No free air is observed below the right hemidiaphragm.",
+    "parsed_report": {
+      "id": "few_shot3",
+      "sentence_list": [
+        {
+          "orig": "Chest x-rays were taken in the upright and lateral positions.",
+          "new": [
+            ""
+          ]
+        },
+        {
+          "orig": "Diffuse peribronchovascular opacities are observed throughout the lungs, which may indicate diffuse bronchopneumonia.",
+          "new": [
+            "Diffuse peribronchovascular opacities are observed throughout the lungs."
+          ]
+        },
+        {
+          "orig": "No lobar consolidation, effusion, or pneumothorax is detected.",
+          "new": [
+            "No lobar consolidation is detected.",
+            "No effusion is detected",
+            "No pneumothorax is detected."
+          ]
+        },
+        {
+          "orig": "The cardiomediastinal silhouette appears normal, and the bony structures are intact.",
+          "new": [
+            "The cardiomediastinal silhouette appears normal.",
+            "The bony structures are intact."
+          ]
+        },
+        {
+          "orig": "No free air is observed below the right hemidiaphragm.",
+          "new": [
+            "No free air is observed below the right hemidiaphragm."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_3",
+    "example_rationale": "Negative finding without location."
+  },
+  {
+    "example_id": "few_shot4",
+    "findings_text": "The left PICC line terminates in the upper SVC and the tracheostomy remains in its original position. The chronic left atelectasis persists without any change. Top normal heart size is stable. No evidence of pneumothorax or right pleural effusion is observed.",
+    "parsed_report": {
+      "id": "few_shot4",
+      "sentence_list": [
+        {
+          "orig": "The left PICC line terminates in the upper SVC and the tracheostomy remains in its original position.",
+          "new": [
+            "The left PICC line terminates in the upper SVC.",
+            "Tracheostomy remains in its original position"
+          ]
+        },
+        {
+          "orig": "The chronic left atelectasis persists without any change.",
+          "new": [
+            "The chronic left atelectasis persists without any change."
+          ]
+        },
+        {
+          "orig": "Top normal heart size is stable.",
+          "new": [
+            "Top normal heart size is stable."
+          ]
+        },
+        {
+          "orig": "No evidence of pneumothorax or right pleural effusion is observed.",
+          "new": [
+            "No evidence of pneumothorax is observed.",
+            "No right pleural effusion is observed."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_4",
+    "example_rationale": "Negative finding with location."
+  },
+  {
+    "example_id": "few_shot5",
+    "findings_text": "The lungs are still hyperinflated, consistent with a history of asthma. Compared to the previous study, there are now hazy areas in the lower parts of both lungs. These may be caused by thickening of the bronchial walls or small airway disease, but there is no evidence of a specific lobe being affected. No pleural effusion or pneumothorax is seen. The cardiac and mediastinal silhouettes are unremarkable.",
+    "parsed_report": {
+      "id": "few_shot5",
+      "sentence_list": [
+        {
+          "orig": "The lungs are still hyperinflated, consistent with a history of asthma.",
+          "new": [
+            "The lungs are still hyperinflated."
+          ]
+        },
+        {
+          "orig": "Compared to the previous study, there are now hazy areas in the lower parts of both lungs. These may be caused by thickening of the bronchial walls or small airway disease, but there is no evidence of a specific lobe being affected.",
+          "new": [
+            "Compared to the previous study, there are now hazy areas in the lower parts of both lungs."
+          ]
+        },
+        {
+          "orig": "No pleural effusion or pneumothorax is seen.",
+          "new": [
+            "No pleural effusion is seen.",
+            "No pneumothorax is seen."
+          ]
+        },
+        {
+          "orig": "The cardiac and mediastinal silhouettes are unremarkable.",
+          "new": [
+            "The cardiac silhouette is unremarkable.",
+            "The mediastinal silhouette is unremarkable."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_5",
+    "example_rationale": "Clinical interpretation."
+  },
+  {
+    "example_id": "few_shot6",
+    "findings_text": "The patient is positioned with a slight rotation to the left. The X-ray reveals the presence of a PAC overlying the upper left left lateral upper hemithorax. There is a relative opacity observed in the left mid-to-lower lung, possibly located in the lingula. This could be attributed to the patient's positioning, an underlying infection causing consolidation, or a contusion. No pleural effusion is seen. There is no evidence of pneumothorax. The cardiac and mediastinal silhouettes are unremarkable. Thoracic scoliosis is present.",
+    "parsed_report": {
+      "id": "few_shot6",
+      "sentence_list": [
+        {
+          "orig": "The patient is positioned with a slight rotation to the left.",
+          "new": [
+            ""
+          ]
+        },
+        {
+          "orig": "The X-ray reveals the presence of a PAC overlying the upper left left lateral upper hemithorax.",
+          "new": [
+            "The X-ray reveals the presence of a PAC overlying the upper left left lateral upper hemithorax."
+          ]
+        },
+        {
+          "orig": "There is a relative opacity observed in the left mid-to-lower lung, possibly located in the lingula. This could be attributed to the patient's positioning, an underlying infection causing consolidation, or a contusion.",
+          "new": [
+            "There is a relative opacity observed in the left mid-to-lower lung, possibly located in the lingula."
+          ]
+        },
+        {
+          "orig": "No pleural effusion is seen.",
+          "new": [
+            "No pleural effusion is seen."
+          ]
+        },
+        {
+          "orig": "There is no evidence of pneumothorax.",
+          "new": [
+            "There is no evidence of pneumothorax."
+          ]
+        },
+        {
+          "orig": "The cardiac and mediastinal silhouettes are unremarkable.",
+          "new": [
+            "The cardiac silhouette is unremarkable.",
+            "The mediastinal silhouette is unremarkable."
+          ]
+        },
+        {
+          "orig": "Thoracic scoliosis is present.",
+          "new": [
+            "Thoracic scoliosis is present."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_6",
+    "example_rationale": "Comment on technical quality."
+  },
+  {
+    "example_id": "few_shot7",
+    "findings_text": "The radiograph shows linear opacities in the right middle lobe and left lower lobe, indicating atelectasis. Mediastinum is unchanged. The patient has undergone a right mastectomy. No pneumothorax is observed. However, there is a new blunting of the left costophrenic angle, which could be due to effusion or pleural thickening. A chest CT is recommended for further evaluation, given the patient's history of malignancy.",
+    "parsed_report": {
+      "id": "few_shot7",
+      "sentence_list": [
+        {
+          "orig": "The radiograph shows linear opacities in the right middle lobe and left lower lobe, indicating atelectasis.",
+          "new": [
+            "The radiograph shows linear opacities in the right middle lobe and left lower lobe, indicating atelectasis."
+          ]
+        },
+        {
+          "orig": "Mediastinum is unchanged.",
+          "new": [
+            "Mediastinum is unchanged."
+          ]
+        },
+        {
+          "orig": "The patient has undergone a right mastectomy.",
+          "new": [
+            "The patient has undergone a right mastectomy."
+          ]
+        },
+        {
+          "orig": "No pneumothorax is observed.",
+          "new": [
+            "No pneumothorax is observed."
+          ]
+        },
+        {
+          "orig": "However, there is a new blunting of the left costophrenic angle, which could be due to effusion or pleural thickening. A chest CT is recommended for further evaluation, given the patient's history of malignancy.",
+          "new": [
+            "There is new blunting of the left costrophrenic angle."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_7",
+    "example_rationale": "Recommendation."
+  },
+  {
+    "example_id": "few_shot8",
+    "findings_text": "Cardiomediastinal contours appear unchanged. The lungs are clear without any signs of pneumonia. However, due to the patient's rotation, there is some overlap of structures in the left juxtamediastinal area. If there is a high suspicion of a lung infection, a non-rotated radiograph may be necessary to fully assess this region.",
+    "parsed_report": {
+      "id": "few_shot8",
+      "sentence_list": [
+        {
+          "orig": "Cardiomediastinal contours appear unchanged.",
+          "new": [
+            "Cardiomediastinal contours appear unchanged."
+          ]
+        },
+        {
+          "orig": "The lungs are clear without any signs of pneumonia. However, due to the patient's rotation, there is some overlap of structures in the left juxtamediastinal area.",
+          "new": [
+            "The lungs are clear.",
+            "Overlap of structures in the left juxtamediastinal area."
+          ]
+        },
+        {
+          "orig": "If there is a high suspicion of a lung infection, a non-rotated radiograph may be necessary to fully assess this region.",
+          "new": [
+            ""
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_8",
+    "example_rationale": "Other irrelevant detail."
+  },
+  {
+    "example_id": "few_shot9",
+    "findings_text": "The current radiographs were compared to the previous ones from _. The left side still shows mediastinal shifting and volume loss. This remains unchanged. The increased density at the left base indicates the collapse of the postoperative left lung, as previously suggested. The right lung is well aerated, with no signs of pulmonary edema, focal consolidation, or pleural effusions. No pneumothoraces are observed. A central venous line is present on the right side, with the distal lead tip located in the proximal SVC.",
+    "parsed_report": {
+      "id": "few_shot9",
+      "sentence_list": [
+        {
+          "orig": "The current radiographs were compared to the previous ones from _.",
+          "new": [
+            ""
+          ]
+        },
+        {
+          "orig": "The left side still shows mediastinal shifting and volume loss. This remains unchanged.",
+          "new": [
+            "The left side still shows mediastinal shifting and volume loss."
+          ]
+        },
+        {
+          "orig": "The increased density at the left base indicates the collapse of the postoperative left lung, as previously suggested.",
+          "new": [
+            "The increased density at the left base indicates the collapse of the postoperative left lung, as previously suggested."
+          ]
+        },
+        {
+          "orig": "The right lung is well aerated, with no signs of pulmonary edema, focal consolidation, or pleural effusions.",
+          "new": [
+            "The right lung is well aerated.",
+            "No signs of pulmonary edema.",
+            "No signs of focal consolidation.",
+            "No signs of pleural effusions."
+          ]
+        },
+        {
+          "orig": "No pneumothoraces are observed.",
+          "new": [
+            "No pneumothoraces are observed."
+          ]
+        },
+        {
+          "orig": "A central venous line is present on the right side, with the distal lead tip located in the proximal SVC.",
+          "new": [
+            "A central venous line is present on the right side, with the distal lead tip located in the proximal SVC."
+          ]
+        }
+      ]
+    },
+    "study_id": "study_id_9",
+    "example_rationale": "Combine sentences."
+  }
+]
