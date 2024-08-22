@@ -1,0 +1,39 @@
+ENDPOINT_0:
+  type: "CHAT_OPENAI" # this specifies which type of langchain model to use
+  url: "<your_url>" # change this with your own endpoint URL
+  deployment_name: "llama3-70b"
+
+  # we support different types of authentication to the endpoint.
+  # 1. You can set the api_key as an environment variable, in the case of multiple endpoints, you can set the
+  # api_key_env_var_name to the name of the environment variable.
+  api_key_env_var_name: "API_KEY_CHAT_0"
+  # 2. Alternatively, you can set the api_key as a secret in Azure KeyVault, update the keyvault_secret_name to the
+  # name of the secret in Azure KeyVault.
+  # keyvault_secret_name: "<your_secret_name>"
+  # 3. If none of the above are set, we fall back to creating a token provider assuming you have the necessary azure
+  # credentials set up.
+
+  # If you have access to multiple endpoints, you can vary the speed_factor to control for the amount of data assigned
+  # to each endpoint. This is used for efficient data sharing across multiple endpoints with different throughput.
+  speed_factor: 1.0
+
+  # Alternatively, you can set the num_parallel_processes to control the number of parallel processes that can be
+  # spawned to handle requests to this endpoint. This is useful to parallelize requests to a single endpoint when
+  # the endpoint has a high throughput. By default, all calls are sequential. This parameter enables parallelism.
+  num_parallel_processes: 10
+
+# If you have access to multiple endpoints, you can add more endpoints as follows. Change the speed factors as needed
+# to control the amount of data assigned to each endpoint.
+
+# ENDPOINT_1:
+#   type: "CHAT_OPENAI"
+#   url: "<your_url_1>" # change this with your own endpoint URL
+  # deployment_name: "llama3-70b"
+#   api_key_env_var_name: "API_KEY_CHAT_1"
+#   speed_factor: 1.33
+# ENDPOINT_2:
+#   type: "CHAT_OPENAI"
+#   # url: "<your_url_2>"  # change this with your own endpoint URL
+  # deployment_name: "llama3-70b"
+#   api_key_env_var_name: "API_KEY_CHAT_2"
+#   speed_factor: 3.66

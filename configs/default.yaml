@@ -1,0 +1,27 @@
+defaults:
+  - endpoints: chat_openai
+  - _self_
+
+llm_api:
+  api_version: "2023-07-01-preview"
+  max_retries: 10
+  temperature: 0.0
+  max_tokens: 1024
+  n_completions: 1
+  top_p: 1.0
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  stop: null
+  timeout: null
+
+processing:
+  index_col: study_id
+  batch_size: 100
+  start_index: 0
+  end_index: null
+  output_filename: "outputs.json"
+
+# The type of cache that should be set for langchain. This can be either "redis" or "sqlite".
+# Sqlite cache is useful for local development, it will be written to ~/.langchain.db
+# Redis cache is useful to share state across many evaluation runs in AzureML
+langchain_cache_type: null

@@ -1,0 +1,6 @@
+#@package __global__
+
+defaults:
+  - default
+  - override endpoints: chat_openai
+  - _self_
