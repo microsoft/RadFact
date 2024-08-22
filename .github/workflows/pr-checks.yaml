@@ -1,0 +1,70 @@
+name: PR checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+  workflow_dispatch:
+
+# Cancel previous runs of this workflow that are still in progress.
+concurrency:
+  group: ${{ github.ref }}/checks
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  # This is required for actions/checkout
+  contents: read
+
+jobs:
+  run_code_quality:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: radfact
+          environment-file: dev_environment.yaml
+
+      - name: Install repo packages
+        run: make setup_packages
+        shell: bash -el {0}
+
+      - name: Run Flake8
+        if: ${{ always() }}
+        run: make flake8
+        shell: bash -el {0}
+
+      - name: Run Black
+        if: ${{ always() }}
+        run: make blackcheck
+        shell: bash -el {0}
+
+      - name: Run Mypy
+        if: ${{ always() }}
+        run: make mypy
+        shell: bash -el {0}
+
+  run_pytest:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: radfact
+          environment-file: dev_environment.yaml
+
+      - name: Install repo packages
+        run: make setup_packages
+        shell: bash -el {0}
+
+      - name: Run pytest
+        run: pytest
+        shell: bash -el {0}
