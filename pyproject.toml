@@ -44,13 +44,13 @@ dependencies = [
     "azureml-tensorboard",
     "azure-keyvault",
     "hi-ml-azure",
-    "hydra-core",
 
     # llm utils
     "hydra-core==1.3.2",
-    "langchain==0.1.4",
-    "langchain-openai==0.0.5",
-    "openai==1.10.0",
+    "langchain==0.2.17",
+    "langchain-community==0.2.19",
+    "langchain-openai==0.1.25",
+    "openai==1.55.0",
     "pydantic==1.10.17",
     "redis",
 

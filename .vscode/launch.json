@@ -37,5 +37,17 @@
                 "dataset.csv_path=<your_path_to_cxr_reports>",
             ]
         },
+        {
+            "name": "Debug run_radfact",
+            "type": "python",
+            "request": "launch",
+            "program": "src/radfact/cli/run_radfact.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+                "--input_path=examples/findings_generation_examples.csv",
+                "--is_narrative_text",
+            ]
+        },
     ]
 }

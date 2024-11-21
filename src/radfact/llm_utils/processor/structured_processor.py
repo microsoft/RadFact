@@ -10,7 +10,6 @@ from pathlib import Path
 from typing import Any, Callable, Generic, Iterable, Protocol, TypeVar
 
 import yaml
-from langchain.chains import LLMChain
 from langchain.output_parsers import PydanticOutputParser, YamlOutputParser
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
@@ -189,16 +188,13 @@ class StructuredProcessor(BaseProcessor[QueryT, ResultT]):
             examples=few_shot_examples,
         )
         self.log_dir = log_dir
-        self.chain: LLMChain | None = None
-        if model is not None:
-            self.set_model(model=model)
-
+        self.model = model
         # For logging
         self.num_failures: int = 0
         self.num_success: int = 0
 
     def set_model(self, model: BaseLanguageModel[str] | BaseLanguageModel[BaseMessage]) -> None:
-        self.chain = LLMChain(prompt=self.query_template, llm=model, output_parser=self.parser)
+        self.model = model
 
     def _write_error(self, ex: Exception, query: QueryT, query_id: str) -> None:
         formatted_query = self.format_query_fn(query)
@@ -210,9 +206,10 @@ class StructuredProcessor(BaseProcessor[QueryT, ResultT]):
             logger.info(f"Error details saved to {error_log_path}.")
 
     def run(self, query: QueryT, query_id: str) -> ResultT | None:
-        assert self.chain, "Model not set. Call `set_model` first."
+        assert self.model, "Model not set. Call `set_model` first."
+        chain = self.query_template | self.model | self.parser
         try:
-            response: ResultT = self.chain.invoke({_QUERY_KEY: query})[self.chain.output_key]
+            response: ResultT = chain.invoke({_QUERY_KEY: query})
             if self.validate_result_fn:
                 self.validate_result_fn(query, response)
             self.num_success += 1
