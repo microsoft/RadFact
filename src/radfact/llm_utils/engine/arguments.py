@@ -67,7 +67,7 @@ class OpenaiAPIArguments(metaclass=ABCMeta):
                 raise ValueError(f"Unsupported endpoint type {self.endpoint.type}")
 
     @abstractmethod
-    def get_model(self) -> ChatOpenAI:
+    def get_model(self) -> ChatOpenAI | AzureChatOpenAI:
         """Returns the chat model."""
         raise NotImplementedError(f"get_model() must be implemented in a subclass {self.__class__.__name__}")
 
@@ -93,12 +93,10 @@ class LLMAPIArguments(OpenaiAPIArguments):
             temperature=self.temperature,
             max_tokens=self.max_tokens,
             n=self.n_completions,
-            model_kwargs=dict(
-                top_p=self.top_p,
-                frequency_penalty=self.frequency_penalty,
-                presence_penalty=self.presence_penalty,
-                stop=self.stop,
-            ),
+            top_p=self.top_p,
+            frequency_penalty=self.frequency_penalty,
+            presence_penalty=self.presence_penalty,
+            stop=self.stop,
         )
 
     def get_params(self) -> dict[str, Any]:

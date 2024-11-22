@@ -7,7 +7,7 @@ import logging
 import re
 
 import redis
-from langchain.cache import RedisCache
+from langchain_community.cache import RedisCache
 
 from radfact.azure_utils.auth import extract_object_id_from_token, get_credential
 

@@ -13,8 +13,8 @@ from typing import Any, Callable
 
 import numpy as np
 import pandas as pd
-from langchain.cache import SQLiteCache
 from langchain.globals import set_llm_cache
+from langchain_community.cache import SQLiteCache
 from omegaconf import DictConfig
 from pydantic import BaseModel
 from tqdm import tqdm
