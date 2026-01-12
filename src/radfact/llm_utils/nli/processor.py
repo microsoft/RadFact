@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 import pandas as pd
+from radfact.llm_utils.prompt_tasks import NLITaskOptions, ReportType
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.messages import BaseMessage
 from omegaconf import DictConfig
@@ -35,11 +36,9 @@ from radfact.llm_utils.processor.structured_processor import (
     StructuredProcessor,
     simple_formatter,
 )
-from radfact.paths import OUTPUT_DIR, get_prompts_dir
+from radfact.paths import OUTPUT_DIR
 
 logger = logging.getLogger(__name__)
-PARSING_TASK = "nli"
-PROMPTS_DIR = get_prompts_dir(task=PARSING_TASK)
 RADFACT_SUBFOLDER = "radfact"
 
 
@@ -49,22 +48,22 @@ class MetricDataframeKeys(str, Enum):
     STUDY_ID = "study_id"
 
 
-def get_ev_processor_singlephrase(log_dir: Path) -> StructuredProcessor[ComparisonQuerySinglePhrase, EvidencedPhrase]:
+def get_ev_processor_singlephrase(
+    report_type: ReportType, log_dir: Path
+) -> StructuredProcessor[ComparisonQuerySinglePhrase, EvidencedPhrase]:
     """
     Helper function to load the NLI processor with the correct system prompt and few-shot examples.
 
     The setting here is to classify a SINGLE PHRASE at a time given the reference report.
     Further, we do entailment verification, aka the binary version of NLI.
 
-    :param api_arguments: API arguments for the LLM.
+    :param report_type: The type of report, e.g., "ReportType.CXR" or "ReportType.CT".
     :param log_dir: Directory to save logs.
     :return: Processor for entailment verification.
     """
-
-    system_prompt_path = PROMPTS_DIR / "system_message_ev_singlephrase.txt"
-    few_shot_examples_path = PROMPTS_DIR / "few_shot_examples.json"
-    system_prompt = system_prompt_path.read_text()
-    few_shot_examples = load_examples_from_json(json_path=few_shot_examples_path, binary=True)
+    task = NLITaskOptions[report_type.name].value
+    system_prompt = task.system_message_path.read_text()
+    few_shot_examples = load_examples_from_json(json_path=task.few_shot_examples_path, binary=True)
     # The few-shots are in the bidirectional format, we need to convert them to single-phrase.
     few_shot_examples_single_phrase: list[NLISampleSinglePhrase] = []
     for few_shot_example in few_shot_examples:
@@ -94,10 +93,12 @@ class ReportGroundingNLIProcessor(BaseProcessor[NLIQuerySample, NLISample]):
     NUM_LLM_SUCCESS = "num_llm_success"
     NUM_LLM_PHRASE_REWRITES = "num_llm_phrase_rewrites"
 
-    def __init__(self, format_query_fn: Callable[..., Any] | None = None) -> None:
+    def __init__(self, report_type: ReportType, format_query_fn: Callable[..., Any] | None = None) -> None:
         super().__init__()
         self.format_query_fn = format_query_fn
-        self.phrase_processor = get_ev_processor_singlephrase(log_dir=OUTPUT_DIR / "ev_processor_logs")
+        self.phrase_processor = get_ev_processor_singlephrase(
+            report_type=report_type, log_dir=OUTPUT_DIR / "ev_processor_logs"
+        )
         # Logging errors
         self.num_llm_failures = 0
         self.num_llm_success = 0
@@ -190,7 +191,16 @@ def get_report_nli_engine(
     cfg: DictConfig, candidates: dict[str, GroundedPhraseList], references: dict[str, GroundedPhraseList]
 ) -> LLMEngine:
     output_folder = get_subfolder(root=OUTPUT_DIR, subfolder=RADFACT_SUBFOLDER)
-    nli_report_processor = ReportGroundingNLIProcessor(format_query_fn=format_row_to_nli_query_sample)
+    report_type_value = cfg.get("report_type")
+    try:
+        report_type = ReportType(report_type_value)
+    except ValueError as e:
+        raise ValueError(
+            f"Invalid report_type '{report_type_value}'. Valid options are: {[rt.value for rt in ReportType]}"
+        ) from e
+    nli_report_processor = ReportGroundingNLIProcessor(
+        report_type=report_type, format_query_fn=format_row_to_nli_query_sample
+    )
     dataset_df = pd.DataFrame(
         {
             MetricDataframeKeys.STUDY_ID: study_id,

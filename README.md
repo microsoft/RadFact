@@ -2,7 +2,7 @@
 
 RadFact is a framework for the evaluation of model-generated radiology reports given a ground-truth report, **with or without grounding**. Leveraging the logical inference capabilities of large language models, RadFact is not a single number but a _suite_ of metrics, capturing aspects of precision and recall at text-only and text-and-grounding levels.
 
-RadFact was introduced in [MAIRA-2: Grounded Radiology Report Generation](https://aka.ms/maira-2). Here we provide an open-source implementation of the metric to facilitate its use and development.
+RadFact was introduced in [MAIRA-2: Grounded Radiology Report Generation](https://aka.ms/maira-2). Here we provide an open-source implementation of the metric to facilitate its use and development. The RadFact metric currently supports both `cxr` and `ct` report types.
 
 ## Table of Contents
 
@@ -172,6 +172,11 @@ options:
 ```
 
 Refer to the example input files in the [`examples`](examples) directory for the expected format of the input files. The input files should be in the format of a CSV file for non-grounded reports [findings_generation_examples.csv](examples/findings_generation_examples.csv) and a JSON file for grounded reports [grounded_reporting_examples.json](examples/grounded_reporting_examples.json).
+
+RadFact supports different report types through the `report_type` field in [`configs/default.yaml`](configs/default.yaml). Currently supported options are:
+
+- `cxr` - Chest X-ray reports (default)
+- `ct` - CT scan reports
 
 The script computes confidence intervals for the metrics using bootstrapping. The number of bootstrap samples can be controlled using the `--bootstrap_samples` argument. The default value is 500. To disable bootstrapping, set `--bootstrap_samples 0`.
 

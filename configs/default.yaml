@@ -21,6 +21,8 @@ processing:
   end_index: null
   output_filename: "outputs.json"
 
+report_type: "cxr"
+
 # The type of cache that should be set for langchain. This can be either "redis" or "sqlite".
 # Sqlite cache is useful for local development, it will be written to ~/.langchain.db
 # Redis cache is useful to share state across many evaluation runs in AzureML

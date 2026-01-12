@@ -8,6 +8,16 @@ from pathlib import Path
 
 import mock
 import pandas as pd
+from radfact.llm_utils.report_to_phrases.processor import get_report_to_phrases_engine
+from radfact.metric.radfact import REPORT_TO_PHRASES_CONFIG, init_hydra_config
+from radfact.llm_utils.nli.processor import get_ev_processor_singlephrase
+from radfact.paths import OUTPUT_DIR
+from radfact.llm_utils.prompt_tasks import ReportType
+from radfact.llm_utils.report_to_phrases.processor import get_report_to_phrases_processor
+from radfact.llm_utils.prompt_tasks import NLITaskOptions, ReportToPhrasesTaskOptions
+from radfact.llm_utils.nli.schema import NLISampleSinglePhrase
+from radfact.llm_utils.report_to_phrases.schema import load_examples_from_json as load_examples_from_json_phrasification
+
 import pytest
 from numpy.testing import assert_equal
 from omegaconf import DictConfig
@@ -23,6 +33,7 @@ from radfact.llm_utils.nli.schema import (
     NLIQuerySample,
     NLISample,
     NLIState,
+    load_examples_from_json as load_examples_from_json_nli,
 )
 from radfact.llm_utils.report_to_phrases.processor import StudyIdType
 from radfact.llm_utils.report_to_phrases.schema import ParsedReport, SentenceWithRephrases
@@ -433,3 +444,41 @@ def test_convert_narrative_text_to_phrases() -> None:
     with mock.patch('radfact.metric.radfact.get_report_to_phrases_engine', return_value=mock_phrase_engine):
         processed_texts = metric.convert_narrative_text_to_phrases(input_texts, metric_prefix)
     assert processed_texts == expected_texts
+
+
+@pytest.mark.parametrize("report_type_value", ["cxr", "ct"])
+def test_report_type_phrasification(report_type_value: str) -> None:
+    report_type = ReportType(report_type_value)
+    processor = get_report_to_phrases_processor(report_type=report_type)
+
+    task = ReportToPhrasesTaskOptions[report_type.name].value
+
+    system_message = task.system_message_path.read_text()
+    assert processor.query_template.system_prompt.startswith(system_message)
+    few_shot_examples = load_examples_from_json_phrasification(task.few_shot_examples_path)
+    assert few_shot_examples == processor.query_template.examples  # type: ignore[comparison-overlap]
+
+
+@pytest.mark.parametrize("report_type_value", ["cxr", "ct"])
+def test_report_type_nli(report_type_value: str) -> None:
+    report_type = ReportType(report_type_value)
+    processor = get_ev_processor_singlephrase(report_type=report_type, log_dir=OUTPUT_DIR / "ev_processor_logs_test")
+
+    task = NLITaskOptions[report_type.name].value
+
+    system_message = task.system_message_path.read_text()
+    assert processor.query_template.system_prompt == system_message
+    few_shot_examples = load_examples_from_json_nli(task.few_shot_examples_path, binary=True)
+    few_shot_examples_single_phrase: list[NLISampleSinglePhrase] = []
+    for few_shot_example in few_shot_examples:
+        one_way_dict = NLISampleSinglePhrase.from_nli_sample(few_shot_example)
+        for single_phrase_sample in one_way_dict.values():
+            few_shot_examples_single_phrase.extend(single_phrase_sample)
+    assert few_shot_examples_single_phrase == processor.query_template.examples
+
+
+def test_invalid_report_type() -> None:
+    config = init_hydra_config(REPORT_TO_PHRASES_CONFIG)
+    config.report_type = "invalid_type"
+    with pytest.raises(ValueError):
+        get_report_to_phrases_engine(cfg=config, dataset_df=pd.DataFrame({}, columns=["study_id", "FINDINGS"]))
