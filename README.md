@@ -173,14 +173,15 @@ options:
 
 Refer to the example input files in the [`examples`](examples) directory for the expected format of the input files. The input files should be in the format of a CSV file for non-grounded reports [findings_generation_examples.csv](examples/findings_generation_examples.csv) and a JSON file for grounded reports [grounded_reporting_examples.json](examples/grounded_reporting_examples.json).
 
+The script computes confidence intervals for the metrics using bootstrapping. The number of bootstrap samples can be controlled using the `--bootstrap_samples` argument. The default value is 500. To disable bootstrapping, set `--bootstrap_samples 0`.
+
+⚠️**WARNING**: Some queries may fail due to the endpoint limitations (timeouts, rate limits, etc.). When the LLM performing entailment verification fails, we **set these examples as not-entailed by default**. If this occurs in a significant number of cases, the results will not be reliable. The final metrics dict contains the number of such skipped queries under the key `num_llm_failures`. The script will print the number of skipped queries at the end of the run, and store these in the `skipped` directroy under the run id folder. You will also see a warning message in the logs for each failed query. `WARNING: No response for example {query_id}. Setting as NOT ENTAILED`.
+
+### Supporting Multiple Report Rypes
 RadFact supports different report types through the `report_type` field in [`configs/default.yaml`](configs/default.yaml). Currently supported options are:
 
 - `cxr` - Chest X-ray reports (default)
 - `ct` - CT scan reports
-
-The script computes confidence intervals for the metrics using bootstrapping. The number of bootstrap samples can be controlled using the `--bootstrap_samples` argument. The default value is 500. To disable bootstrapping, set `--bootstrap_samples 0`.
-
-⚠️**WARNING**: Some queries may fail due to the endpoint limitations (timeouts, rate limits, etc.). When the LLM performing entailment verification fails, we **set these examples as not-entailed by default**. If this occurs in a significant number of cases, the results will not be reliable. The final metrics dict contains the number of such skipped queries under the key `num_llm_failures`. The script will print the number of skipped queries at the end of the run, and store these in the `skipped` directroy under the run id folder. You will also see a warning message in the logs for each failed query. `WARNING: No response for example {query_id}. Setting as NOT ENTAILED`.
 
 ### Split reports into phrases
 
