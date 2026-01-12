@@ -7,6 +7,7 @@ import logging
 from dataclasses import asdict, replace
 from typing import Any, Iterable, Mapping
 
+from radfact.llm_utils.prompt_tasks import ReportType
 import hydra
 import numpy as np
 import pandas as pd
@@ -17,6 +18,7 @@ from radfact.data_utils.grounded_phrase_list import GroundedPhraseList, Normaliz
 from radfact.llm_utils.nli.processor import get_report_nli_engine
 from radfact.llm_utils.nli.schema import EVState, NLISample
 from radfact.llm_utils.report_to_phrases.processor import FINDINGS_SECTION, StudyIdType, get_report_to_phrases_engine
+from radfact.llm_utils.negative_filtering.processor import get_negative_filtering_engine, process_filtered_reports
 from radfact.llm_utils.report_to_phrases.schema import ParsedReport
 from radfact.metric.box_metrics import PRECISION, compute_box_metrics
 from radfact.metric.schema import (
@@ -208,13 +210,34 @@ class RadFactMetric:
         )
         engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df)
         parsed_reports: list[ParsedReport] = engine.run()
-        processed_texts = {
-            parsed.id: parsed.to_grounded_phrases_list() for parsed in parsed_reports if parsed.id is not None
-        }
+
         if engine.aggregated_processor_stats is not None:
             self.meta_metrics.update(
                 {f"{metric_prefix}/{k}": float(v) for k, v in engine.aggregated_processor_stats.items()}
             )
+
+        if self.llm_phrase_cfg.dataset.filter_negatives:
+            assert (
+                self.llm_phrase_cfg.report_type == ReportType.CT.value
+            ), "Negative filtering is only supported for CT reports."
+            logger.info("Filtering negatives from previous run.")
+            engine = get_negative_filtering_engine(self.llm_phrase_cfg, parsed_reports)
+            engine.run()
+            parsed_reports, num_rewritten_sentences = process_filtered_reports(engine)
+            if engine.aggregated_processor_stats is not None:
+                self.meta_metrics.update(
+                    {
+                        f"negative_filtering_{metric_prefix}/{k}": float(v)
+                        for k, v in engine.aggregated_processor_stats.items()
+                    }
+                )
+                self.meta_metrics[f"negative_filtering_{metric_prefix}/num_rewritten_sentences"] = (
+                    num_rewritten_sentences
+                )
+
+        processed_texts = {
+            parsed.id: parsed.to_grounded_phrases_list() for parsed in parsed_reports if parsed.id is not None
+        }
         if set(processed_texts.keys()) != set(texts.keys()):
             logger.warning(
                 f"Key mismatch between processed and input texts. #input keys: {len(set(texts.keys()))}. #processed "

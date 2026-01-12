@@ -7,7 +7,11 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from radfact.llm_utils.prompt_tasks import REPORT_TO_PHRASES_PARSING_TASK, ReportToPhrasesTaskOptions, ReportType
+from radfact.llm_utils.prompt_tasks import (
+    REPORT_TO_PHRASES_PARSING_TASK,
+    ReportToPhrasesTaskOptions,
+    ReportType,
+)
 from omegaconf import DictConfig
 
 from radfact.llm_utils.engine.engine import LLMEngine, get_subfolder

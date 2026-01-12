@@ -8,3 +8,4 @@ defaults:
 dataset:
   name: reports_to_phrases
   csv_path: "<your_path_to_cxr_reports>"
+  filter_negatives: false
