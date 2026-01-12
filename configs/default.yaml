@@ -21,7 +21,7 @@ processing:
   end_index: null
   output_filename: "outputs.json"
 
-report_type: "cxr"
+report_type: "cxr" # cxr or ct
 
 # The type of cache that should be set for langchain. This can be either "redis" or "sqlite".
 # Sqlite cache is useful for local development, it will be written to ~/.langchain.db
