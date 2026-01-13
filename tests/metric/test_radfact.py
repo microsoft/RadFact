@@ -8,8 +8,6 @@ from pathlib import Path
 
 import mock
 import pandas as pd
-from radfact.llm_utils.report_to_phrases.processor import get_report_to_phrases_engine
-from radfact.metric.radfact import REPORT_TO_PHRASES_CONFIG, init_hydra_config
 from radfact.llm_utils.nli.processor import get_ev_processor_singlephrase
 from radfact.paths import OUTPUT_DIR
 from radfact.llm_utils.prompt_tasks import ReportType
@@ -255,7 +253,7 @@ def test_nli_processing_with_endpoint(mock_nli_engine: mock.Mock) -> None:
     }
 
 
-def get_mock_phrase_engine(llm_phrase_cfg: DictConfig, df: pd.DataFrame) -> mock.Mock:
+def get_mock_phrase_engine(llm_phrase_cfg: DictConfig, df: pd.DataFrame, report_type: ReportType) -> mock.Mock:
     mock_phrase_engine = mock.Mock()
     if df["FINDINGS"].values[0] == "The cat The dog The bird The rabbit":
         mock_phrase_engine.run.return_value = [
@@ -475,10 +473,3 @@ def test_report_type_nli(report_type_value: str) -> None:
         for single_phrase_sample in one_way_dict.values():
             few_shot_examples_single_phrase.extend(single_phrase_sample)
     assert few_shot_examples_single_phrase == processor.query_template.examples
-
-
-def test_invalid_report_type() -> None:
-    config = init_hydra_config(REPORT_TO_PHRASES_CONFIG)
-    config.report_type = "invalid_type"
-    with pytest.raises(ValueError):
-        get_report_to_phrases_engine(cfg=config, dataset_df=pd.DataFrame({}, columns=["study_id", "FINDINGS"]))

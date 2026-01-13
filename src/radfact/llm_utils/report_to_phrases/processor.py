@@ -49,13 +49,15 @@ def get_findings_from_row(row: "pd.Series[Any]") -> str:
     return findings
 
 
-def get_report_to_phrases_engine(cfg: DictConfig, dataset_df: pd.DataFrame) -> LLMEngine:
+def get_report_to_phrases_engine(
+    cfg: DictConfig, dataset_df: pd.DataFrame, report_type: ReportType = ReportType.CXR
+) -> LLMEngine:
     """
     Create the processing engine for converting reports to phrases.
 
     :param cfg: The configuration for the processing engine.
     :param dataset_df: The dataset DataFrame.
-    :param subfolder: The subfolder to save the processing output.
+    :param report_type: The type of report, e.g., CXR or CT.
     :return: The processing engine.
     """
     subfolder = cfg.dataset.name
@@ -63,14 +65,7 @@ def get_report_to_phrases_engine(cfg: DictConfig, dataset_df: pd.DataFrame) -> L
     output_folder = get_subfolder(root, subfolder)
     final_output_folder = get_subfolder(root, subfolder)
     log_dir = get_subfolder(root, "logs")
-
-    report_type_value = cfg.get("report_type")
-    try:
-        report_type = ReportType(report_type_value)
-    except ValueError as e:
-        raise ValueError(
-            f"Invalid report_type '{report_type_value}'. Valid options are: {[rt.value for rt in ReportType]}"
-        ) from e
+    breakpoint()
 
     report_to_phrases_processor = get_report_to_phrases_processor(report_type=report_type, log_dir=log_dir)
     id_col = cfg.processing.index_col
