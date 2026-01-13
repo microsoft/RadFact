@@ -8,7 +8,6 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from radfact.llm_utils.report_to_phrases.processor import StudyIdType
 from radfact.llm_utils.prompt_tasks import NegativeFilteringTaskOptions, ReportType
 from omegaconf import DictConfig
 
@@ -16,6 +15,10 @@ from radfact.llm_utils.engine.engine import LLMEngine, get_subfolder
 from radfact.llm_utils.processor.structured_processor import StructuredProcessor, parse_examples_from_json
 from radfact.llm_utils.report_to_phrases.schema import ParsedReport, Rephrases, RephrasesExample, SentenceWithRephrases
 from radfact.paths import OUTPUT_DIR
+
+NEGATIVE_FILTERING_SUBFOLDER = "negative_report_filtering"
+ORIG = "orig"
+NEW = "new"
 
 
 def get_negative_filtering_phrase_processor(
@@ -43,22 +46,21 @@ def get_negative_filtering_phrase_processor(
 
 def load_filtering_queries_from_parsed_reports(
     reports: list[ParsedReport],
+    index_col: str,
 ) -> pd.DataFrame:
     """
     Load queries for filtering from a list of parsed reports. Queries consist of all the
     newly parsed phrases from phrasification, along with metadata including the study ID
     and original phrase.
     :param reports: A list of ParsedReport objects.
+    :param index_col: The column containing the index
     :return: A list of queries.
     """
     queries = []
-    report_ids: dict[StudyIdType, int] = defaultdict(int)
     for report in reports:
-        for sentence in report.sentence_list:
-            assert report.id is not None
-            queries.append([f"{str(report.id)}_{report_ids[report.id]}", sentence.orig, sentence.new])
-            report_ids[str(report.id)] += 1
-    query_df = pd.DataFrame(queries, columns=["study_id", "orig", "new_phrases"])
+        for i, sentence in enumerate(report.sentence_list):
+            queries.append([f"{report.id}_{i}", sentence.orig, sentence.new])
+    query_df = pd.DataFrame(queries, columns=[index_col, ORIG, NEW])
     return query_df
 
 
@@ -69,11 +71,10 @@ def get_negative_filtering_engine(cfg: DictConfig, parsed_reports: list[ParsedRe
     :param cfg: The configuration for the processing engine.
     :return: The processing engine.
     """
-    subfolder = cfg.dataset.name
-    root = OUTPUT_DIR / "negative_report_filtering"
-    output_folder = get_subfolder(root, subfolder)
-    final_output_folder = get_subfolder(root, subfolder)
-    log_dir = get_subfolder(root, "logs")
+    subfolder = NEGATIVE_FILTERING_SUBFOLDER
+    output_folder = get_subfolder(OUTPUT_DIR, subfolder)
+    final_output_folder = get_subfolder(OUTPUT_DIR, subfolder)
+    log_dir = get_subfolder(OUTPUT_DIR, "logs")
 
     report_type_value = cfg.get("report_type")
     try:
@@ -83,25 +84,26 @@ def get_negative_filtering_engine(cfg: DictConfig, parsed_reports: list[ParsedRe
             f"Invalid report_type '{report_type_value}'. Valid options are: {[rt.value for rt in ReportType]}"
         ) from e
 
-    query_df = load_filtering_queries_from_parsed_reports(parsed_reports)
+    query_df = load_filtering_queries_from_parsed_reports(parsed_reports, cfg.processing.index_col)
     negative_filtering_processor = get_negative_filtering_phrase_processor(report_type=report_type, log_dir=log_dir)
 
     engine = LLMEngine(
         cfg=cfg,
         processor=negative_filtering_processor,
         dataset_df=query_df,
-        row_to_query_fn=lambda row: row["new_phrases"],
+        row_to_query_fn=lambda row: row[NEW],
         progress_output_folder=output_folder,
         final_output_folder=final_output_folder,
     )
     return engine
 
 
-def process_filtered_reports(engine: LLMEngine) -> tuple[list[ParsedReport], int]:
+def process_filtered_reports(engine: LLMEngine, cfg: DictConfig) -> tuple[list[ParsedReport], int]:
     """
     Process the filtered reports using the provided engine.
 
     :param engine: The LLMEngine used for processing.
+    :param cfg: The configuration for negative filtering processing.
     :return: A tuple containing a list of ParsedReport objects and the number of rewritten sentences.
     """
     outputs = engine.return_raw_outputs
@@ -109,14 +111,15 @@ def process_filtered_reports(engine: LLMEngine) -> tuple[list[ParsedReport], int
 
     parsed_report_dict = defaultdict(list)
     num_rewritten_sentences = 0
+
     for k in outputs.keys():
         rephrases = outputs[k]
         metadata_df = metadata[k].df
 
         for idx, row in metadata_df.iterrows():
-            study_id = row["study_id"].split("_")[0]
-            orig = row["orig"]
-            unfiltered_phrases = set(row["new_phrases"])
+            study_id = row[cfg.processing.index_col].rsplit("_", 1)[0]
+            orig = row[ORIG]
+            unfiltered_phrases = set(row[NEW])
             filtered_phrases = set(rephrases[idx].new)
 
             if not filtered_phrases.issubset(unfiltered_phrases):

@@ -46,6 +46,8 @@ PerSampleResultType = list[PerSampleNLIResult]
 RADFACT_CONFIG = "radfact.yaml"
 # The YAML config file for the phrase processor in this setting.
 REPORT_TO_PHRASES_CONFIG = "report_to_phrases.yaml"
+# The YAML config file for the negative filtering processor in this setting.
+NEGATIVE_FILTERING_CONFIG = "negative_filtering.yaml"
 
 
 def init_hydra_config(config_name: str) -> DictConfig:
@@ -70,9 +72,11 @@ class RadFactMetric:
         self,
         nli_config_name: str | None = None,
         phrase_config_name: str | None = None,
+        filtering_config_name: str | None = None,
         image_size: int = 224,
         box_precision_threshold: float = 0.5,
         is_narrative_text: bool = False,
+        filter_negatives: bool = False,
     ) -> None:
         """
         Initializes the RadFactMetric with the necessary configurations. We need to know the image size so we can
@@ -88,13 +92,17 @@ class RadFactMetric:
             findings section. We need to convert this to lists GroundedPhrase before conducting entailment verification.
             If False, we are running the metric on grounded reports, where the phrases are already in the correct
             format for entailment verification.
+        :param filter_negatives: If True, we will filter negative findings from the parsed reports before computing
+            the RadFact score.
         """
         self.llm_nli_cfg = init_hydra_config(nli_config_name or RADFACT_CONFIG)
         self.llm_phrase_cfg = init_hydra_config(phrase_config_name or REPORT_TO_PHRASES_CONFIG)
+        self.llm_negative_filtering_cfg = init_hydra_config(filtering_config_name or NEGATIVE_FILTERING_CONFIG)
         self.image_size = image_size
         self.box_precision_threshold = box_precision_threshold
         self.is_narrative_text = is_narrative_text
         self.meta_metrics: dict[str, float] = {}  # Metrics about the metric, derived from processors. Not per-sample.
+        self.filter_negatives = filter_negatives
 
     def _are_boxes_entailed(self, boxes: list[NormalizedBox] | None, evidence_boxes: list[NormalizedBox]) -> bool:
         """
@@ -216,14 +224,14 @@ class RadFactMetric:
                 {f"{metric_prefix}/{k}": float(v) for k, v in engine.aggregated_processor_stats.items()}
             )
 
-        if self.llm_phrase_cfg.dataset.filter_negatives:
+        if self.filter_negatives:
             assert (
                 self.llm_phrase_cfg.report_type == ReportType.CT.value
             ), "Negative filtering is only supported for CT reports."
             logger.info("Filtering negatives from previous run.")
-            engine = get_negative_filtering_engine(self.llm_phrase_cfg, parsed_reports)
+            engine = get_negative_filtering_engine(self.llm_negative_filtering_cfg, parsed_reports)
             engine.run()
-            parsed_reports, num_rewritten_sentences = process_filtered_reports(engine)
+            parsed_reports, num_rewritten_sentences = process_filtered_reports(engine, self.llm_negative_filtering_cfg)
             if engine.aggregated_processor_stats is not None:
                 self.meta_metrics.update(
                     {

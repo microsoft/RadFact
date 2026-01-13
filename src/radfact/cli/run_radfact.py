@@ -63,15 +63,19 @@ def get_candidates_and_references_from_json(
 def compute_radfact_scores(
     radfact_config_name: str | None,
     phrases_config_name: str | None,
+    filtering_config_name: str | None,
     candidates: InputDict,
     references: InputDict,
     is_narrative_text: bool,
     bootstrap_samples: int,
+    filter_negatives: bool,
 ) -> dict[str, float]:
     radfact_metric = RadFactMetric(
         nli_config_name=radfact_config_name,
         phrase_config_name=phrases_config_name,
+        filtering_config_name=filtering_config_name,
         is_narrative_text=is_narrative_text,
+        filter_negatives=filter_negatives,
     )
     if bootstrap_samples == 0:
         _, results = radfact_metric.compute_metric_score(candidates, references)
@@ -119,6 +123,15 @@ def main() -> None:
         default=None,
     )
     parser.add_argument(
+        "--filtering_config_name",
+        type=str,
+        help="The name of the config file for negative finding filtering. We use the default config file but you can "
+        "provide a custom config. Make sure the config follows the same structure as `configs/negative_filtering.yaml` "
+        "and is saved in the `configs` directory. This is necessary for hydra initialization from the `configs` "
+        "directory.",
+        default=None,
+    )
+    parser.add_argument(
         "--output_dir",
         type=str,
         help="Path to the directory where the results will be saved as a json file.",
@@ -131,6 +144,11 @@ def main() -> None:
         "bootstrapping.",
         default=500,
     )
+    parser.add_argument(
+        "--filter_negatives",
+        action="store_true",
+        help="Whether to filter negative findings from the parsed reports before computing the RadFact score.",
+    )
 
     args = parser.parse_args()
     input_path = Path(args.input_path)
@@ -138,7 +156,9 @@ def main() -> None:
     is_narrative_text = args.is_narrative_text
     radfact_config_name = args.radfact_config_name
     phrases_config_name = args.phrases_config_name
+    filtering_config_name = args.filtering_config_name
     bootstrap_samples = args.bootstrap_samples
+    filter_negatives = args.filter_negatives
 
     assert input_path.suffix in [".csv", ".json"], "Input file must be a csv or json file."
     assert input_path.suffix == ".csv" or not is_narrative_text, (
@@ -159,10 +179,12 @@ def main() -> None:
     results = compute_radfact_scores(
         radfact_config_name=radfact_config_name,
         phrases_config_name=phrases_config_name,
+        filtering_config_name=filtering_config_name,
         candidates=candidates,
         references=references,
         is_narrative_text=is_narrative_text,
         bootstrap_samples=bootstrap_samples,
+        filter_negatives=filter_negatives,
     )
 
     print_fn = print_results if bootstrap_samples == 0 else print_bootstrap_results
