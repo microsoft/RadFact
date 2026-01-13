@@ -65,7 +65,6 @@ def get_report_to_phrases_engine(
     output_folder = get_subfolder(root, subfolder)
     final_output_folder = get_subfolder(root, subfolder)
     log_dir = get_subfolder(root, "logs")
-    breakpoint()
 
     report_to_phrases_processor = get_report_to_phrases_processor(report_type=report_type, log_dir=log_dir)
     id_col = cfg.processing.index_col
