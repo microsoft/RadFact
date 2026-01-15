@@ -2,7 +2,7 @@
 
 RadFact is a framework for the evaluation of model-generated radiology reports given a ground-truth report, **with or without grounding**. Leveraging the logical inference capabilities of large language models, RadFact is not a single number but a _suite_ of metrics, capturing aspects of precision and recall at text-only and text-and-grounding levels.
 
-RadFact was introduced in [MAIRA-2: Grounded Radiology Report Generation](https://aka.ms/maira-2). Here we provide an open-source implementation of the metric to facilitate its use and development.
+RadFact was introduced in [MAIRA-2: Grounded Radiology Report Generation](https://aka.ms/maira-2). Here we provide an open-source implementation of the metric to facilitate its use and development. The RadFact metric currently supports both `cxr` and `ct` report types.
 
 ## Table of Contents
 
@@ -157,6 +157,8 @@ options:
                         Path to the directory where the results will be saved as a json file.
   --bootstrap_samples BOOTSTRAP_SAMPLES
                         Number of bootstrap samples to use for computing the confidence intervals. Set to 0 to disable bootstrapping.
+  --report_type {cxr,ct}
+                        Type of report: 'cxr' for chest x-ray reports or 'ct' for CT reports.
 ```
 
 - for non-grounded reports (findings generation narrative text):
@@ -176,6 +178,12 @@ Refer to the example input files in the [`examples`](examples) directory for the
 The script computes confidence intervals for the metrics using bootstrapping. The number of bootstrap samples can be controlled using the `--bootstrap_samples` argument. The default value is 500. To disable bootstrapping, set `--bootstrap_samples 0`.
 
 ⚠️**WARNING**: Some queries may fail due to the endpoint limitations (timeouts, rate limits, etc.). When the LLM performing entailment verification fails, we **set these examples as not-entailed by default**. If this occurs in a significant number of cases, the results will not be reliable. The final metrics dict contains the number of such skipped queries under the key `num_llm_failures`. The script will print the number of skipped queries at the end of the run, and store these in the `skipped` directroy under the run id folder. You will also see a warning message in the logs for each failed query. `WARNING: No response for example {query_id}. Setting as NOT ENTAILED`.
+
+### Supporting Multiple Report Rypes
+RadFact supports different report types through the `report_type` field in the `RadFactMetric` class. Currently supported options are:
+
+- `cxr` - Chest X-ray reports (default)
+- `ct` - CT scan reports
 
 ### Split reports into phrases
 

@@ -78,7 +78,6 @@ test = [
     "mock",
     "pandas-stubs",
     "pytest",
-    "pytest-lazy-fixture",
 ]
 
 [project.urls]

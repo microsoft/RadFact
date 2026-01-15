@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   run_code_quality:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -50,7 +50,7 @@ jobs:
         shell: bash -el {0}
 
   run_pytest:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:

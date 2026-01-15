@@ -311,7 +311,6 @@ dependencies:
       - pyparsing==3.2.0
       - pysocks==1.7.1
       - pytest==8.3.3
-      - pytest-lazy-fixture==0.6.3
       - python-dateutil==2.9.0.post0
       - pytz==2024.2
       - pyyaml==6.0.2

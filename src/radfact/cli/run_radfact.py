@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from radfact.llm_utils.prompt_tasks import ReportType
 from radfact.data_utils.grounded_phrase_list import GroundedPhraseList
 from radfact.llm_utils.report_to_phrases.processor import StudyIdType
 from radfact.metric.bootstrapping import MetricBootstrapper
@@ -66,12 +67,14 @@ def compute_radfact_scores(
     candidates: InputDict,
     references: InputDict,
     is_narrative_text: bool,
+    report_type: ReportType,
     bootstrap_samples: int,
 ) -> dict[str, float]:
     radfact_metric = RadFactMetric(
         nli_config_name=radfact_config_name,
         phrase_config_name=phrases_config_name,
         is_narrative_text=is_narrative_text,
+        report_type=report_type,
     )
     if bootstrap_samples == 0:
         _, results = radfact_metric.compute_metric_score(candidates, references)
@@ -131,6 +134,13 @@ def main() -> None:
         "bootstrapping.",
         default=500,
     )
+    parser.add_argument(
+        "--report_type",
+        type=str,
+        choices=["cxr", "ct"],
+        help="Type of report: 'cxr' for chest x-ray reports or 'ct' for CT reports.",
+        default="cxr",
+    )
 
     args = parser.parse_args()
     input_path = Path(args.input_path)
@@ -139,6 +149,7 @@ def main() -> None:
     radfact_config_name = args.radfact_config_name
     phrases_config_name = args.phrases_config_name
     bootstrap_samples = args.bootstrap_samples
+    report_type = ReportType(args.report_type)
 
     assert input_path.suffix in [".csv", ".json"], "Input file must be a csv or json file."
     assert input_path.suffix == ".csv" or not is_narrative_text, (
@@ -163,6 +174,7 @@ def main() -> None:
         references=references,
         is_narrative_text=is_narrative_text,
         bootstrap_samples=bootstrap_samples,
+        report_type=report_type,
     )
 
     print_fn = print_results if bootstrap_samples == 0 else print_bootstrap_results

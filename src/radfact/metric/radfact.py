@@ -7,6 +7,7 @@ import logging
 from dataclasses import asdict, replace
 from typing import Any, Iterable, Mapping
 
+from radfact.llm_utils.prompt_tasks import ReportType
 import hydra
 import numpy as np
 import pandas as pd
@@ -71,6 +72,7 @@ class RadFactMetric:
         image_size: int = 224,
         box_precision_threshold: float = 0.5,
         is_narrative_text: bool = False,
+        report_type: ReportType = ReportType.CXR,
     ) -> None:
         """
         Initializes the RadFactMetric with the necessary configurations. We need to know the image size so we can
@@ -86,9 +88,11 @@ class RadFactMetric:
             findings section. We need to convert this to lists GroundedPhrase before conducting entailment verification.
             If False, we are running the metric on grounded reports, where the phrases are already in the correct
             format for entailment verification.
+        :param report_type: The type of report, e.g. CXR or CT
         """
         self.llm_nli_cfg = init_hydra_config(nli_config_name or RADFACT_CONFIG)
         self.llm_phrase_cfg = init_hydra_config(phrase_config_name or REPORT_TO_PHRASES_CONFIG)
+        self.report_type = report_type
         self.image_size = image_size
         self.box_precision_threshold = box_precision_threshold
         self.is_narrative_text = is_narrative_text
@@ -206,7 +210,7 @@ class RadFactMetric:
         texts_as_str_df = pd.DataFrame(
             {id_col: study_id, FINDINGS_SECTION: texts_as_str[study_id]} for study_id in texts_as_str.keys()
         )
-        engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df)
+        engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df, self.report_type)
         parsed_reports: list[ParsedReport] = engine.run()
         processed_texts = {
             parsed.id: parsed.to_grounded_phrases_list() for parsed in parsed_reports if parsed.id is not None
@@ -304,7 +308,9 @@ class RadFactMetric:
         candidates_str_ids = {str(study_id): sequence for study_id, sequence in candidates_mm.items()}
         references_str_ids = {str(study_id): sequence for study_id, sequence in references_mm.items()}
 
-        llm_ev_engine = get_report_nli_engine(self.llm_nli_cfg, candidates_str_ids, references_str_ids)
+        llm_ev_engine = get_report_nli_engine(
+            self.llm_nli_cfg, candidates_str_ids, references_str_ids, self.report_type
+        )
         processed_samples: list[NLISample] = llm_ev_engine.run()
         if llm_ev_engine.aggregated_processor_stats:
             self.meta_metrics.update(llm_ev_engine.aggregated_processor_stats)

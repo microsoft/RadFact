@@ -7,29 +7,30 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+from radfact.llm_utils.prompt_tasks import REPORT_TO_PHRASES_PARSING_TASK, ReportToPhrasesTaskOptions, ReportType
 from omegaconf import DictConfig
 
 from radfact.llm_utils.engine.engine import LLMEngine, get_subfolder
 from radfact.llm_utils.processor.structured_processor import StructuredProcessor
 from radfact.llm_utils.report_to_phrases.schema import ParsedReport, load_examples_from_json
-from radfact.paths import OUTPUT_DIR, get_prompts_dir
+from radfact.paths import OUTPUT_DIR
 
 FINDINGS_SECTION = "FINDINGS"
-PARSING_TASK = "report_to_phrases"
-PROMPTS_DIR = get_prompts_dir(task=PARSING_TASK)
 StudyIdType = str | int
 
 
-def get_report_to_phrases_processor(log_dir: Path | None = None) -> StructuredProcessor[str, ParsedReport]:
+def get_report_to_phrases_processor(
+    report_type: ReportType, log_dir: Path | None = None
+) -> StructuredProcessor[str, ParsedReport]:
     """Return a processor for converting reports to phrases.
 
+    :param report_type: The type of report, e.g., "ReportType.CXR" or "ReportType.CT".
     :param log_dir: The directory to save logs.
     :return: The processor for report to phrase conversion.
     """
-    system_message_path = PROMPTS_DIR / "system_message.txt"
-    few_shot_examples_path = PROMPTS_DIR / "few_shot_examples.json"
-    system_prompt = system_message_path.read_text()
-    few_shot_examples = load_examples_from_json(few_shot_examples_path)
+    task = ReportToPhrasesTaskOptions[report_type.name].value
+    system_prompt = task.system_message_path.read_text()
+    few_shot_examples = load_examples_from_json(task.few_shot_examples_path)
     processor = StructuredProcessor(
         query_type=str,
         result_type=ParsedReport,
@@ -48,22 +49,24 @@ def get_findings_from_row(row: "pd.Series[Any]") -> str:
     return findings
 
 
-def get_report_to_phrases_engine(cfg: DictConfig, dataset_df: pd.DataFrame) -> LLMEngine:
+def get_report_to_phrases_engine(
+    cfg: DictConfig, dataset_df: pd.DataFrame, report_type: ReportType = ReportType.CXR
+) -> LLMEngine:
     """
     Create the processing engine for converting reports to phrases.
 
     :param cfg: The configuration for the processing engine.
     :param dataset_df: The dataset DataFrame.
-    :param subfolder: The subfolder to save the processing output.
+    :param report_type: The type of report, e.g., CXR or CT.
     :return: The processing engine.
     """
     subfolder = cfg.dataset.name
-    root = OUTPUT_DIR / PARSING_TASK
+    root = OUTPUT_DIR / REPORT_TO_PHRASES_PARSING_TASK
     output_folder = get_subfolder(root, subfolder)
     final_output_folder = get_subfolder(root, subfolder)
     log_dir = get_subfolder(root, "logs")
 
-    report_to_phrases_processor = get_report_to_phrases_processor(log_dir=log_dir)
+    report_to_phrases_processor = get_report_to_phrases_processor(report_type=report_type, log_dir=log_dir)
     id_col = cfg.processing.index_col
     dataset_df = dataset_df[[id_col, FINDINGS_SECTION]]
     engine = LLMEngine(

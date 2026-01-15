@@ -1,0 +1,627 @@
+[
+    {
+    "example_id": "ct_example1_study1_study2",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "There is a 2 cm renal cyst in the left kidney.",
+            "The liver shows signs of mild hepatic steatosis.",
+            "No evidence of free air in the abdominal cavity."
+        ],
+        "phrases_B": [
+            "A 2 cm hypodense lesion is present in the left kidney, consistent with a cyst.",
+            "Diffuse hepatic steatosis is noted.",
+            "Free air is visible under the diaphragm."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "A 2 cm hypodense lesion is present in the left kidney, consistent with a cyst."
+                ],
+                "phrase": "There is a 2 cm renal cyst in the left kidney.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "Diffuse hepatic steatosis is noted."
+                ],
+                "phrase": "The liver shows signs of mild hepatic steatosis.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "Free air is visible under the diaphragm."
+                ],
+                "phrase": "No evidence of free air in the abdominal cavity.",
+                "status": "contradiction"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "There is a 2 cm renal cyst in the left kidney."
+                ],
+                "phrase": "A 2 cm hypodense lesion is present in the left kidney, consistent with a cyst.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "The liver shows signs of mild hepatic steatosis."
+                ],
+                "phrase": "Diffuse hepatic steatosis is noted.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "No evidence of free air in the abdominal cavity."
+                ],
+                "phrase": "Free air is visible under the diaphragm.",
+                "status": "contradiction"
+            }
+        ]
+    }
+},
+{
+    "example_id": "ct_example2_study3_study4",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "There is a small renal cyst in the left kidney.",
+            "The liver appears normal in size and shape.",
+            "The lungs are clear with no signs of infiltrates."
+        ],
+        "phrases_B": [
+            "A small cyst is noted in the left kidney.",
+            "The liver is unremarkable.",
+            "Heart size is within normal limits."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "A small cyst is noted in the left kidney."
+                ],
+                "phrase": "There is a small renal cyst in the left kidney.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "The liver is unremarkable."
+                ],
+                "phrase": "The liver appears normal in size and shape.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "The lungs are clear with no signs of infiltrates.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "There is a small renal cyst in the left kidney."
+                ],
+                "phrase": "A small cyst is noted in the left kidney.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "The liver appears normal in size and shape."
+                ],
+                "phrase": "The liver is unremarkable.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "Heart size is within normal limits.",
+                "status": "neutral"
+            }
+        ]
+    }
+},
+{
+    "example_id": "ct_example3_study5_study6",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "The pancreas shows evidence of atrophy.",
+            "Hydronephrosis noted in the right kidney.",
+            "No gallstones are present in the gallbladder."
+        ],
+        "phrases_B": [
+            "Atrophy of the pancreatic tissue is visible.",
+            "Moderate right hydronephrosis is identified.",
+            "Multiple gallstones seen in the gallbladder."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "Atrophy of the pancreatic tissue is visible."
+                ],
+                "phrase": "The pancreas shows evidence of atrophy.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "Moderate right hydronephrosis is identified."
+                ],
+                "phrase": "Hydronephrosis noted in the right kidney.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "Multiple gallstones seen in the gallbladder."
+                ],
+                "phrase": "No gallstones are present in the gallbladder.",
+                "status": "contradiction"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "The pancreas shows evidence of atrophy."
+                ],
+                "phrase": "Atrophy of the pancreatic tissue is visible.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "Hydronephrosis noted in the right kidney."
+                ],
+                "phrase": "Moderate right hydronephrosis is identified.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "No gallstones are present in the gallbladder."
+                ],
+                "phrase": "Multiple gallstones seen in the gallbladder.",
+                "status": "contradiction"
+            }
+        ]
+    }
+},
+{
+    "example_id": "ct_example4_study7_study8",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "No signs of pulmonary embolism.",
+            "The aorta is of normal caliber.",
+            "There is a small hiatal hernia."
+        ],
+        "phrases_B": [
+            "The pulmonary arteries are clear with no embolism detected.",
+            "The aorta is unremarkable.",
+            "There is no evidence of renal calculi."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "The pulmonary arteries are clear with no embolism detected."
+                ],
+                "phrase": "No signs of pulmonary embolism.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "The aorta is unremarkable."
+                ],
+                "phrase": "The aorta is of normal caliber.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "There is a small hiatal hernia.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "No signs of pulmonary embolism."
+                ],
+                "phrase": "The pulmonary arteries are clear with no embolism detected.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "The aorta is of normal caliber."
+                ],
+                "phrase": "The aorta is unremarkable.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "There is no evidence of renal calculi.",
+                "status": "neutral"
+            }
+        ]
+    }
+},
+{
+    "example_id": "ct_example5_study9_study10",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "Mild cardiomegaly is observed.",
+            "No evidence of bowel obstruction.",
+            "The spleen is of normal size."
+        ],
+        "phrases_B": [
+            "Heart size is slightly enlarged.",
+            "The bowel loops are normal with no signs of obstruction.",
+            "The pancreas shows no abnormalities."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "Heart size is slightly enlarged."
+                ],
+                "phrase": "Mild cardiomegaly is observed.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "The bowel loops are normal with no signs of obstruction."
+                ],
+                "phrase": "No evidence of bowel obstruction.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "The spleen is of normal size.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "Mild cardiomegaly is observed."
+                ],
+                "phrase": "Heart size is slightly enlarged.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "No evidence of bowel obstruction."
+                ],
+                "phrase": "The bowel loops are normal with no signs of obstruction.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "The pancreas shows no abnormalities.",
+                "status": "neutral"
+            }
+        ]
+    }
+},
+{
+    "example_id": "ct_example6_study11_study12",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "The heart size is normal on CT.",
+            "No infiltrates or masses identified in the lungs.",
+            "No pleural effusion seen on CT scan."
+        ],
+        "phrases_B": [
+            "Multiple nodular densities in both lungs.",
+            "Heart size is normal on CT.",
+            "No pneumothorax detected."
+        ]
+    },
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "Heart size is normal on CT."
+                ],
+                "phrase": "The heart size is normal on CT.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "Multiple nodular densities in both lungs."
+                ],
+                "phrase": "No infiltrates or masses identified in the lungs.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [],
+                "phrase": "No pleural effusion seen on CT scan.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "No infiltrates or masses identified in the lungs."
+                ],
+                "phrase": "Multiple nodular densities in both lungs.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [
+                    "The heart size is normal on CT."
+                ],
+                "phrase": "Heart size is normal on CT.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "No pneumothorax detected.",
+                "status": "neutral"
+            }
+        ]
+    }
+},
+{
+    "example_id": "1.3.6.1.4.1.55648.016633401174206362235121936818612914820_1.3.6.1.4.1.55648.241546114664305764079189793827197454684",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "Scarring or atelectasis in the left lung base is seen.",
+            "Cardiomediastinum is unremarkable.",
+            "Degenerative changes are seen throughout the spine."
+        ],
+        "phrases_B": [
+            "The lungs are clear.",
+            "The cardiomediastinal structures are unremarkable.",
+            "There are no pleural effusions."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "The lungs are clear."
+                ],
+                "phrase": "Scarring or atelectasis in the left lung base is seen.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [
+                    "The cardiomediastinal structures are unremarkable."
+                ],
+                "phrase": "Cardiomediastinum is unremarkable.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "Degenerative changes are seen throughout the spine.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "Scarring or atelectasis in the left lung base is seen."
+                ],
+                "phrase": "The lungs are clear.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [
+                    "Cardiomediastinum is unremarkable."
+                ],
+                "phrase": "The cardiomediastinal structures are unremarkable.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "There are no pleural effusions.",
+                "status": "neutral"
+            }
+        ]
+    }
+},
+{
+    "example_id": "1.3.6.1.4.1.55648.192816863503104216516892632261380714559_1.3.6.1.4.1.55648.287593655440699590688075363115862054018",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "A moderate size left pleural effusion slightly larger in size.",
+            "Pacemaker is unchanged.",
+            "There is persistent consolidation in the left lung base."
+        ],
+        "phrases_B": [
+            "There are small bilateral pleural effusions that have developed since prior study.",
+            "Left basilar consolidation is present.",
+            "The heart size is within normal limits.",
+            "No acute chest wall abnormality is radiographically evident."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "There are small bilateral pleural effusions that have developed since prior study."
+                ],
+                "phrase": "A moderate size left pleural effusion slightly larger in size.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [],
+                "phrase": "Pacemaker is unchanged.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [],
+                "phrase": "There is persistent consolidation in the left lung base.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [],
+                "phrase": "There are small bilateral pleural effusions that have developed since prior study.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [
+                    "There is persistent consolidation in the left lung base."
+                ],
+                "phrase": "Left basilar consolidation is present.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "The heart size is within normal limits.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [],
+                "phrase": "No acute chest wall abnormality is radiographically evident.",
+                "status": "neutral"
+            }
+        ]
+    }
+},
+{
+    "example_id": "1.3.6.1.4.1.55648.144771367909794201071026393675954665550_1.3.6.1.4.1.55648.84420269742583802251982398782271710226",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "The heart is within normal limits.",
+            "Pulmonary vascularity is unremarkable.",
+            "There are patchy bibasilar infiltrates."
+        ],
+        "phrases_B": [
+            "The left-sided pneumothorax has enlarged.",
+            "The left-sided pigtail chest tube remains in place.",
+            "Heart size is normal.",
+            "There is pulmonary consolidation."
+        ]
+    },
+    "rationale": "rationale",
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "Heart size is normal."
+                ],
+                "phrase": "The heart is within normal limits.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [],
+                "phrase": "Pulmonary vascularity is unremarkable.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [],
+                "phrase": "There are patchy bibasilar infiltrates.",
+                "status": "neutral"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [],
+                "phrase": "The left-sided pneumothorax has enlarged.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [],
+                "phrase": "The left-sided pigtail chest tube remains in place.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [
+                    "The heart is within normal limits."
+                ],
+                "phrase": "Heart size is normal.",
+                "status": "entailment"
+            },
+            {
+                "evidence": [
+                    "There are patchy bibasilar infiltrates."
+                ],
+                "phrase": "There is pulmonary consolidation.",
+                "status": "entailment"
+            }
+        ]
+    }
+},
+{
+    "example_id": "ct_example7_study13_study14",
+    "study_id": "nan",
+    "input": {
+        "phrases_A": [
+            "CT confirms bilateral ground-glass opacities.",
+            "No evidence of aortic aneurysm.",
+            "Liver is enlarged with fatty infiltration."
+        ],
+        "phrases_B": [
+            "Ground-glass opacities are absent in the left lung.",
+            "Ground-glass opacities not found in the right lung.",
+            "Normal liver size and texture."
+        ]
+    },
+    "output": {
+        "phrases_A_evidenced": [
+            {
+                "evidence": [
+                    "Ground-glass opacities are absent in the left lung.",
+                    "Ground-glass opacities not found in the right lung."
+                ],
+                "phrase": "CT confirms bilateral ground-glass opacities.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [],
+                "phrase": "No evidence of aortic aneurysm.",
+                "status": "neutral"
+            },
+            {
+                "evidence": [
+                    "Normal liver size and texture."
+                ],
+                "phrase": "Liver is enlarged with fatty infiltration.",
+                "status": "contradiction"
+            }
+        ],
+        "phrases_B_evidenced": [
+            {
+                "evidence": [
+                    "CT confirms bilateral ground-glass opacities."
+                ],
+                "phrase": "Ground-glass opacities are absent in the left lung.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [
+                    "CT confirms bilateral ground-glass opacities."
+                ],
+                "phrase": "Ground-glass opacities not found in the right lung.",
+                "status": "contradiction"
+            },
+            {
+                "evidence": [
+                    "Liver is enlarged with fatty infiltration."
+                ],
+                "phrase": "Normal liver size and texture.",
+                "status": "contradiction"
+            }
+        ]
+    }
+}
+]
