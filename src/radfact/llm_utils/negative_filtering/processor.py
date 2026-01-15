@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from radfact.llm_utils.prompt_tasks import NegativeFilteringTaskOptions, ReportType
+from radfact.llm_utils.prompt_tasks import NEGATIVE_FILTERING_PARSING_TASK, NegativeFilteringTaskOptions, ReportType
 from omegaconf import DictConfig
 
 from radfact.llm_utils.engine.engine import LLMEngine, get_subfolder
@@ -21,7 +21,6 @@ from radfact.llm_utils.report_to_phrases.schema import (
 )
 from radfact.paths import OUTPUT_DIR
 
-NEGATIVE_FILTERING_SUBFOLDER = "negative_report_filtering"
 ORIG = "orig"
 NEW = "new"
 
@@ -81,7 +80,7 @@ def get_negative_filtering_engine(
     :param report_type: The type of report, e.g., CT.
     :return: The processing engine.
     """
-    OUTPUT_FOLDER = OUTPUT_DIR / NEGATIVE_FILTERING_SUBFOLDER
+    OUTPUT_FOLDER = OUTPUT_DIR / NEGATIVE_FILTERING_PARSING_TASK
     output_folder = get_subfolder(OUTPUT_FOLDER, subfolder_prefix)
     final_output_folder = get_subfolder(OUTPUT_FOLDER, subfolder_prefix)
     log_dir = get_subfolder(OUTPUT_FOLDER, "logs")
