@@ -157,6 +157,9 @@ options:
                         Path to the directory where the results will be saved as a json file.
   --bootstrap_samples BOOTSTRAP_SAMPLES
                         Number of bootstrap samples to use for computing the confidence intervals. Set to 0 to disable bootstrapping.
+  --report_type {cxr,ct}
+                        Type of report: 'cxr' for chest x-ray reports or 'ct' for CT reports.
+  --filter_negatives    Whether to filter negative findings from the parsed reports before computing the RadFact score.
 ```
 
 - for non-grounded reports (findings generation narrative text):
@@ -177,8 +180,8 @@ The script computes confidence intervals for the metrics using bootstrapping. Th
 
 ⚠️**WARNING**: Some queries may fail due to the endpoint limitations (timeouts, rate limits, etc.). When the LLM performing entailment verification fails, we **set these examples as not-entailed by default**. If this occurs in a significant number of cases, the results will not be reliable. The final metrics dict contains the number of such skipped queries under the key `num_llm_failures`. The script will print the number of skipped queries at the end of the run, and store these in the `skipped` directroy under the run id folder. You will also see a warning message in the logs for each failed query. `WARNING: No response for example {query_id}. Setting as NOT ENTAILED`.
 
-### Supporting Multiple Report Rypes
-RadFact supports different report types through the `report_type` field in [`configs/default.yaml`](configs/default.yaml). Currently supported options are:
+### Supporting Multiple Report Types
+RadFact supports different report types through the `report_type` field in the `RadFactMetric` class. Currently supported options are:
 
 - `cxr` - Chest X-ray reports (default)
 - `ct` - CT scan reports
@@ -192,6 +195,13 @@ We also provide a script to convert reports to phrases. This is useful when you 
 ```
 
 This script is configurable using the `report_to_phrases.yaml` config file. You can specify the input file, output file, and the endpoint to use for the conversion.
+
+### Filtering Negative Phrases
+Radiology reports can have a disproportionate number of negative findings, and filtering these out can help focus evaluation on clinically relevant positive findings. For non-grounded reports, RadFact can be configured to filter out negative findings once reports have been converted to phrases. Note that this feature is currently only available for CT reports.
+
+```bash
+  run_radfact --input_path <path_to_input_file.json> --is_narrative_text --filter_negatives
+```
 
 ## What is RadFact?
 

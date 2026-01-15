@@ -49,6 +49,9 @@ REPORT_TO_PHRASES_CONFIG = "report_to_phrases.yaml"
 # The YAML config file for the negative filtering processor in this setting.
 NEGATIVE_FILTERING_CONFIG = "negative_filtering.yaml"
 
+GENERATIONS = "generations"
+GROUND_TRUTH = "ground_truth"
+
 
 def init_hydra_config(config_name: str) -> DictConfig:
     """Initialize Hydra with the given config name."""
@@ -76,6 +79,7 @@ class RadFactMetric:
         image_size: int = 224,
         box_precision_threshold: float = 0.5,
         is_narrative_text: bool = False,
+        report_type: ReportType = ReportType.CXR,
         filter_negatives: bool = False,
     ) -> None:
         """
@@ -92,17 +96,21 @@ class RadFactMetric:
             findings section. We need to convert this to lists GroundedPhrase before conducting entailment verification.
             If False, we are running the metric on grounded reports, where the phrases are already in the correct
             format for entailment verification.
+        :param report_type: The type of report, e.g. CXR or CT
         :param filter_negatives: If True, we will filter negative findings from the parsed reports before computing
             the RadFact score.
         """
         self.llm_nli_cfg = init_hydra_config(nli_config_name or RADFACT_CONFIG)
         self.llm_phrase_cfg = init_hydra_config(phrase_config_name or REPORT_TO_PHRASES_CONFIG)
         self.llm_negative_filtering_cfg = init_hydra_config(filtering_config_name or NEGATIVE_FILTERING_CONFIG)
+        self.report_type = report_type
         self.image_size = image_size
         self.box_precision_threshold = box_precision_threshold
         self.is_narrative_text = is_narrative_text
         self.meta_metrics: dict[str, float] = {}  # Metrics about the metric, derived from processors. Not per-sample.
         self.filter_negatives = filter_negatives
+        if self.filter_negatives:
+            assert self.report_type == ReportType.CT, "Negative filtering is only supported for CT reports."
 
     def _are_boxes_entailed(self, boxes: list[NormalizedBox] | None, evidence_boxes: list[NormalizedBox]) -> bool:
         """
@@ -216,7 +224,15 @@ class RadFactMetric:
         texts_as_str_df = pd.DataFrame(
             {id_col: study_id, FINDINGS_SECTION: texts_as_str[study_id]} for study_id in texts_as_str.keys()
         )
-        engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df)
+
+        if metric_prefix.endswith(GENERATIONS):
+            subfolder_prefix = GENERATIONS
+        elif metric_prefix.endswith(GROUND_TRUTH):
+            subfolder_prefix = GROUND_TRUTH
+        else:
+            subfolder_prefix = ""
+
+        engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df, subfolder_prefix, self.report_type)
         parsed_reports: list[ParsedReport] = engine.run()
 
         if engine.aggregated_processor_stats is not None:
@@ -225,11 +241,13 @@ class RadFactMetric:
             )
 
         if self.filter_negatives:
-            assert (
-                self.llm_phrase_cfg.report_type == ReportType.CT.value
-            ), "Negative filtering is only supported for CT reports."
             logger.info("Filtering negatives from previous run.")
-            engine = get_negative_filtering_engine(self.llm_negative_filtering_cfg, parsed_reports)
+            engine = get_negative_filtering_engine(
+                self.llm_negative_filtering_cfg,
+                parsed_reports,
+                subfolder_prefix,
+                report_type=self.report_type,
+            )
             engine.run()
             parsed_reports, num_rewritten_sentences = process_filtered_reports(engine, self.llm_negative_filtering_cfg)
             if engine.aggregated_processor_stats is not None:
@@ -335,7 +353,9 @@ class RadFactMetric:
         candidates_str_ids = {str(study_id): sequence for study_id, sequence in candidates_mm.items()}
         references_str_ids = {str(study_id): sequence for study_id, sequence in references_mm.items()}
 
-        llm_ev_engine = get_report_nli_engine(self.llm_nli_cfg, candidates_str_ids, references_str_ids)
+        llm_ev_engine = get_report_nli_engine(
+            self.llm_nli_cfg, candidates_str_ids, references_str_ids, self.report_type
+        )
         processed_samples: list[NLISample] = llm_ev_engine.run()
         if llm_ev_engine.aggregated_processor_stats:
             self.meta_metrics.update(llm_ev_engine.aggregated_processor_stats)

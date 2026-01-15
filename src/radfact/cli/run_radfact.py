@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from radfact.llm_utils.prompt_tasks import ReportType
 from radfact.data_utils.grounded_phrase_list import GroundedPhraseList
 from radfact.llm_utils.report_to_phrases.processor import StudyIdType
 from radfact.metric.bootstrapping import MetricBootstrapper
@@ -67,6 +68,7 @@ def compute_radfact_scores(
     candidates: InputDict,
     references: InputDict,
     is_narrative_text: bool,
+    report_type: ReportType,
     bootstrap_samples: int,
     filter_negatives: bool,
 ) -> dict[str, float]:
@@ -75,6 +77,7 @@ def compute_radfact_scores(
         phrase_config_name=phrases_config_name,
         filtering_config_name=filtering_config_name,
         is_narrative_text=is_narrative_text,
+        report_type=report_type,
         filter_negatives=filter_negatives,
     )
     if bootstrap_samples == 0:
@@ -145,6 +148,13 @@ def main() -> None:
         default=500,
     )
     parser.add_argument(
+        "--report_type",
+        type=str,
+        choices=["cxr", "ct"],
+        help="Type of report: 'cxr' for chest x-ray reports or 'ct' for CT reports.",
+        default="cxr",
+    )
+    parser.add_argument(
         "--filter_negatives",
         action="store_true",
         help="Whether to filter negative findings from the parsed reports before computing the RadFact score.",
@@ -158,6 +168,7 @@ def main() -> None:
     phrases_config_name = args.phrases_config_name
     filtering_config_name = args.filtering_config_name
     bootstrap_samples = args.bootstrap_samples
+    report_type = ReportType(args.report_type)
     filter_negatives = args.filter_negatives
 
     assert input_path.suffix in [".csv", ".json"], "Input file must be a csv or json file."
@@ -184,6 +195,7 @@ def main() -> None:
         references=references,
         is_narrative_text=is_narrative_text,
         bootstrap_samples=bootstrap_samples,
+        report_type=report_type,
         filter_negatives=filter_negatives,
     )
 

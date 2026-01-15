@@ -188,16 +188,13 @@ def format_row_to_nli_query_sample(row: "pd.Series[Any]") -> NLIQuerySample:
 
 
 def get_report_nli_engine(
-    cfg: DictConfig, candidates: dict[str, GroundedPhraseList], references: dict[str, GroundedPhraseList]
+    cfg: DictConfig,
+    candidates: dict[str, GroundedPhraseList],
+    references: dict[str, GroundedPhraseList],
+    report_type: ReportType = ReportType.CXR,
 ) -> LLMEngine:
     output_folder = get_subfolder(root=OUTPUT_DIR, subfolder=RADFACT_SUBFOLDER)
-    report_type_value = cfg.get("report_type")
-    try:
-        report_type = ReportType(report_type_value)
-    except ValueError as e:
-        raise ValueError(
-            f"Invalid report_type '{report_type_value}'. Valid options are: {[rt.value for rt in ReportType]}"
-        ) from e
+
     nli_report_processor = ReportGroundingNLIProcessor(
         report_type=report_type, format_query_fn=format_row_to_nli_query_sample
     )

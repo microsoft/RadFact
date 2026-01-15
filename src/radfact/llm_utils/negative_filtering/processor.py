@@ -64,25 +64,22 @@ def load_filtering_queries_from_parsed_reports(
     return query_df
 
 
-def get_negative_filtering_engine(cfg: DictConfig, parsed_reports: list[ParsedReport]) -> LLMEngine:
+def get_negative_filtering_engine(
+    cfg: DictConfig, parsed_reports: list[ParsedReport], subfolder_prefix: str, report_type: ReportType
+) -> LLMEngine:
     """
     Create the processing engine for filtering negative findings from parsed reports.
 
     :param cfg: The configuration for the processing engine.
+    :param parsed_reports: A list of ParsedReport objects to filter.
+    :param subfolder_prefix: The prefix for the metric folder
+    :param report_type: The type of report, e.g., CT.
     :return: The processing engine.
     """
-    subfolder = NEGATIVE_FILTERING_SUBFOLDER
-    output_folder = get_subfolder(OUTPUT_DIR, subfolder)
-    final_output_folder = get_subfolder(OUTPUT_DIR, subfolder)
-    log_dir = get_subfolder(OUTPUT_DIR, "logs")
-
-    report_type_value = cfg.get("report_type")
-    try:
-        report_type = ReportType(report_type_value)
-    except ValueError as e:
-        raise ValueError(
-            f"Invalid report_type '{report_type_value}'. Valid options are: {[rt.value for rt in ReportType]}"
-        ) from e
+    OUTPUT_FOLDER = OUTPUT_DIR / NEGATIVE_FILTERING_SUBFOLDER
+    output_folder = get_subfolder(OUTPUT_FOLDER, subfolder_prefix)
+    final_output_folder = get_subfolder(OUTPUT_FOLDER, subfolder_prefix)
+    log_dir = get_subfolder(OUTPUT_FOLDER, "logs")
 
     query_df = load_filtering_queries_from_parsed_reports(parsed_reports, cfg.processing.index_col)
     negative_filtering_processor = get_negative_filtering_phrase_processor(report_type=report_type, log_dir=log_dir)
