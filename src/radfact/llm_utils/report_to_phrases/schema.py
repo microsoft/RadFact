@@ -13,12 +13,13 @@ from radfact.data_utils.grounded_phrase_list import GroundedPhrase, GroundedPhra
 from radfact.llm_utils.processor.base_processor import BaseModelWithId
 
 
-class Rephrases(BaseModel):
-    new: list[str]
+class PhraseList(BaseModel):
+    phrases: list[str]
 
 
-class SentenceWithRephrases(Rephrases):
+class SentenceWithRephrases(BaseModel):
     orig: str
+    new: list[str]
 
 
 class ParsedReport(BaseModelWithId):
@@ -72,11 +73,11 @@ class ParsedReport(BaseModelWithId):
         return sequence
 
 
-class RephrasesExample(BaseModel):
+class PhraseListExample(BaseModel):
     """A single example of a list of phrases before and after processing"""
 
     input: list[str]
-    output: Rephrases
+    output: PhraseList
 
 
 class PhraseParsingExample(BaseModel):

@@ -13,7 +13,12 @@ from omegaconf import DictConfig
 
 from radfact.llm_utils.engine.engine import LLMEngine, get_subfolder
 from radfact.llm_utils.processor.structured_processor import StructuredProcessor, parse_examples_from_json
-from radfact.llm_utils.report_to_phrases.schema import ParsedReport, Rephrases, RephrasesExample, SentenceWithRephrases
+from radfact.llm_utils.report_to_phrases.schema import (
+    ParsedReport,
+    PhraseList,
+    PhraseListExample,
+    SentenceWithRephrases,
+)
 from radfact.paths import OUTPUT_DIR
 
 NEGATIVE_FILTERING_SUBFOLDER = "negative_report_filtering"
@@ -23,7 +28,7 @@ NEW = "new"
 
 def get_negative_filtering_phrase_processor(
     report_type: ReportType, log_dir: Path | None = None
-) -> StructuredProcessor[list[str], Rephrases]:
+) -> StructuredProcessor[list[str], PhraseList]:
     """Return a processor for filtering negative findings from a list of phrases.
 
     :param report_type: The type of report, e.g., "ReportType.CXR" or "ReportType.CT".
@@ -32,10 +37,10 @@ def get_negative_filtering_phrase_processor(
     """
     task = NegativeFilteringTaskOptions[report_type.name].value
     system_prompt = task.system_message_path.read_text()
-    few_shot_examples = parse_examples_from_json(task.few_shot_examples_path, RephrasesExample)
+    few_shot_examples = parse_examples_from_json(task.few_shot_examples_path, PhraseListExample)
     processor = StructuredProcessor(
         query_type=list[str],
-        result_type=Rephrases,
+        result_type=PhraseList,
         system_prompt=system_prompt,
         format_query_fn=lambda x: json.dumps(x),
         few_shot_examples=few_shot_examples,
@@ -110,14 +115,14 @@ def process_filtered_reports(engine: LLMEngine, cfg: DictConfig) -> tuple[list[P
     num_rewritten_sentences = 0
 
     for k in outputs.keys():
-        rephrases = outputs[k]
+        phrase_list = outputs[k]
         metadata_df = metadata[k].df
 
         for idx, row in metadata_df.iterrows():
             study_id = row[cfg.processing.index_col].rsplit("_", 1)[0]
             orig = row[ORIG]
             unfiltered_phrases = set(row[NEW])
-            filtered_phrases = set(rephrases[idx].new)
+            filtered_phrases = set(phrase_list[idx].phrases)
 
             if not filtered_phrases.issubset(unfiltered_phrases):
                 rewritten_phrases = filtered_phrases - unfiltered_phrases

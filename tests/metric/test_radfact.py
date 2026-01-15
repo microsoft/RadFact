@@ -10,7 +10,7 @@ from pathlib import Path
 
 import mock
 import pandas as pd
-from radfact.llm_utils.report_to_phrases.schema import Rephrases
+from radfact.llm_utils.report_to_phrases.schema import PhraseList
 from radfact.llm_utils.engine.data_subset import DataSubset
 from radfact.llm_utils.nli.processor import get_ev_processor_singlephrase
 from radfact.paths import OUTPUT_DIR
@@ -302,7 +302,7 @@ def get_mock_filtering_engine(
     # Inject a rewritten phrase to simulate filtering mistake
     new_parsed_reports[0].sentence_list[0].new.append("Dummy filtered phrase")
     mock_filtering_engine.return_raw_outputs = {
-        "endpoint_1": [Rephrases(new=report.sentence_list[0].new) for report in new_parsed_reports]
+        "endpoint_1": [PhraseList(phrases=report.sentence_list[0].new) for report in new_parsed_reports]
     }
     if parsed_reports[0].sentence_list[0].orig == "The cat The dog The bird The rabbit":
         mock_filtering_engine.return_dataset_subsets = {
