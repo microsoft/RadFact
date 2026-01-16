@@ -15,11 +15,13 @@ from radfact.llm_utils.processor.base_processor import BaseModelWithId
 
 class PhraseList(BaseModel):
     """Dataclass for a list of phrases."""
+
     phrases: list[str]
 
 
 class SentenceWithRephrases(BaseModel):
     """Dataclass for a sentence with rephrases. The source sentence is 'orig' and the rephrased sentences are 'new'."""
+
     orig: str
     new: list[str]
 
