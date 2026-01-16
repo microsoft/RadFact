@@ -90,6 +90,9 @@ class RadFactMetric:
             different endpoints that the NLI processor will use. If None, the default config will be used.
         :param phrase_config_name: The name of the phrase processing config file. This is the config file that specifies
             the different endpoints that the phrase processor will use. If None, the default config will be used.
+        :param filtering_config_name: The name of the negative filtering processing config file. This is the config file
+            that specifies the different endpoints that the negative filtering processor will use. If None, the default config
+            will be used.
         :param image_size: The size of the images in the reports.
         :param box_precision_threshold: The threshold for precision computation for boxes.
         :param is_narrative_text: If True, we are running the metric on data narrative text data, e.g. the original

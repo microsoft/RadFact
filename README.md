@@ -134,7 +134,8 @@ You can refer to the [getting_started](getting_started.ipynb) notebook to see ho
 
 ```bash
 $ run_radfact --help
-usage: run_radfact [-h] [--radfact_config_name RADFACT_CONFIG_NAME] [--phrases_config_name PHRASES_CONFIG_NAME] --input_path INPUT_PATH [--is_narrative_text] [--output_dir OUTPUT_DIR] [--bootstrap_samples BOOTSTRAP_SAMPLES]
+usage: run_radfact [-h] --input_path INPUT_PATH [--is_narrative_text] [--radfact_config_name RADFACT_CONFIG_NAME] [--phrases_config_name PHRASES_CONFIG_NAME] [--filtering_config_name FILTERING_CONFIG_NAME] [--output_dir OUTPUT_DIR] 
+[--bootstrap_samples BOOTSTRAP_SAMPLES] [--report_type {cxr,ct}] [--filter_negatives]
 
 Compute RadFact metric for a set of samples and saves the results to a json file.
 
@@ -153,6 +154,8 @@ options:
                         The name of the config file for reports to phrases conversion. We use the default config file but you can provide a custom config. Make sure the config follows
                         the same structure as `configs/report_to_phrases.yaml` and is saved in the `configs` directory. This is necessary for hydra initialization from the `configs`
                         directory.
+  --filtering_config_name FILTERING_CONFIG_NAME
+                        The name of the config file for negative finding filtering. We use the default config file but you can provide a custom config. Make sure the config follows the same structure as `configs/negative_filtering.yaml` and is saved in the `configs` directory. This is necessary for hydra initialization from the `configs` directory.
   --output_dir OUTPUT_DIR
                         Path to the directory where the results will be saved as a json file.
   --bootstrap_samples BOOTSTRAP_SAMPLES
