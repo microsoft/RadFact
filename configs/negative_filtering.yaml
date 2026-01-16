@@ -1,0 +1,9 @@
+#@package __global__
+
+defaults:
+  - default
+  - override endpoints: azure_chat_openai
+  - _self_
+
+processing:
+  index_col: sentence_id

@@ -7,7 +7,11 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from radfact.llm_utils.prompt_tasks import REPORT_TO_PHRASES_PARSING_TASK, ReportToPhrasesTaskOptions, ReportType
+from radfact.llm_utils.prompt_tasks import (
+    REPORT_TO_PHRASES_PARSING_TASK,
+    ReportToPhrasesTaskOptions,
+    ReportType,
+)
 from omegaconf import DictConfig
 
 from radfact.llm_utils.engine.engine import LLMEngine, get_subfolder
@@ -50,18 +54,19 @@ def get_findings_from_row(row: "pd.Series[Any]") -> str:
 
 
 def get_report_to_phrases_engine(
-    cfg: DictConfig, dataset_df: pd.DataFrame, report_type: ReportType = ReportType.CXR
+    cfg: DictConfig, dataset_df: pd.DataFrame, subfolder_prefix: str = "", report_type: ReportType = ReportType.CXR
 ) -> LLMEngine:
     """
     Create the processing engine for converting reports to phrases.
 
     :param cfg: The configuration for the processing engine.
     :param dataset_df: The dataset DataFrame.
+    :param subfolder_prefix: The prefix for the metric folder
     :param report_type: The type of report, e.g., CXR or CT.
     :return: The processing engine.
     """
     subfolder = cfg.dataset.name
-    root = OUTPUT_DIR / REPORT_TO_PHRASES_PARSING_TASK
+    root = OUTPUT_DIR / REPORT_TO_PHRASES_PARSING_TASK / subfolder_prefix
     output_folder = get_subfolder(root, subfolder)
     final_output_folder = get_subfolder(root, subfolder)
     log_dir = get_subfolder(root, "logs")

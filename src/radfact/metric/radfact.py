@@ -18,6 +18,7 @@ from radfact.data_utils.grounded_phrase_list import GroundedPhraseList, Normaliz
 from radfact.llm_utils.nli.processor import get_report_nli_engine
 from radfact.llm_utils.nli.schema import EVState, NLISample
 from radfact.llm_utils.report_to_phrases.processor import FINDINGS_SECTION, StudyIdType, get_report_to_phrases_engine
+from radfact.llm_utils.negative_filtering.processor import get_negative_filtering_engine, process_filtered_reports
 from radfact.llm_utils.report_to_phrases.schema import ParsedReport
 from radfact.metric.box_metrics import PRECISION, compute_box_metrics
 from radfact.metric.schema import (
@@ -45,6 +46,11 @@ PerSampleResultType = list[PerSampleNLIResult]
 RADFACT_CONFIG = "radfact.yaml"
 # The YAML config file for the phrase processor in this setting.
 REPORT_TO_PHRASES_CONFIG = "report_to_phrases.yaml"
+# The YAML config file for the negative filtering processor in this setting.
+NEGATIVE_FILTERING_CONFIG = "negative_filtering.yaml"
+
+GENERATIONS = "generations"
+GROUND_TRUTH = "ground_truth"
 
 
 def init_hydra_config(config_name: str) -> DictConfig:
@@ -69,10 +75,12 @@ class RadFactMetric:
         self,
         nli_config_name: str | None = None,
         phrase_config_name: str | None = None,
+        filtering_config_name: str | None = None,
         image_size: int = 224,
         box_precision_threshold: float = 0.5,
         is_narrative_text: bool = False,
         report_type: ReportType = ReportType.CXR,
+        filter_negatives: bool = False,
     ) -> None:
         """
         Initializes the RadFactMetric with the necessary configurations. We need to know the image size so we can
@@ -82,6 +90,9 @@ class RadFactMetric:
             different endpoints that the NLI processor will use. If None, the default config will be used.
         :param phrase_config_name: The name of the phrase processing config file. This is the config file that specifies
             the different endpoints that the phrase processor will use. If None, the default config will be used.
+        :param filtering_config_name: The name of the negative filtering processing config file. This is the config file
+            that specifies the different endpoints that the negative filtering processor will use. If None, the default config
+            will be used.
         :param image_size: The size of the images in the reports.
         :param box_precision_threshold: The threshold for precision computation for boxes.
         :param is_narrative_text: If True, we are running the metric on data narrative text data, e.g. the original
@@ -89,14 +100,20 @@ class RadFactMetric:
             If False, we are running the metric on grounded reports, where the phrases are already in the correct
             format for entailment verification.
         :param report_type: The type of report, e.g. CXR or CT
+        :param filter_negatives: If True, we will filter negative findings from the parsed reports before computing
+            the RadFact score.
         """
         self.llm_nli_cfg = init_hydra_config(nli_config_name or RADFACT_CONFIG)
         self.llm_phrase_cfg = init_hydra_config(phrase_config_name or REPORT_TO_PHRASES_CONFIG)
+        self.llm_negative_filtering_cfg = init_hydra_config(filtering_config_name or NEGATIVE_FILTERING_CONFIG)
         self.report_type = report_type
         self.image_size = image_size
         self.box_precision_threshold = box_precision_threshold
         self.is_narrative_text = is_narrative_text
         self.meta_metrics: dict[str, float] = {}  # Metrics about the metric, derived from processors. Not per-sample.
+        self.filter_negatives = filter_negatives
+        if self.filter_negatives:
+            assert self.report_type == ReportType.CT, "Negative filtering is only supported for CT reports."
 
     def _are_boxes_entailed(self, boxes: list[NormalizedBox] | None, evidence_boxes: list[NormalizedBox]) -> bool:
         """
@@ -210,15 +227,46 @@ class RadFactMetric:
         texts_as_str_df = pd.DataFrame(
             {id_col: study_id, FINDINGS_SECTION: texts_as_str[study_id]} for study_id in texts_as_str.keys()
         )
-        engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df, self.report_type)
+
+        if metric_prefix.endswith(GENERATIONS):
+            subfolder_prefix = GENERATIONS
+        elif metric_prefix.endswith(GROUND_TRUTH):
+            subfolder_prefix = GROUND_TRUTH
+        else:
+            subfolder_prefix = ""
+
+        engine = get_report_to_phrases_engine(self.llm_phrase_cfg, texts_as_str_df, subfolder_prefix, self.report_type)
         parsed_reports: list[ParsedReport] = engine.run()
-        processed_texts = {
-            parsed.id: parsed.to_grounded_phrases_list() for parsed in parsed_reports if parsed.id is not None
-        }
+
         if engine.aggregated_processor_stats is not None:
             self.meta_metrics.update(
                 {f"{metric_prefix}/{k}": float(v) for k, v in engine.aggregated_processor_stats.items()}
             )
+
+        if self.filter_negatives:
+            logger.info("Filtering negatives from previous run.")
+            engine = get_negative_filtering_engine(
+                self.llm_negative_filtering_cfg,
+                parsed_reports,
+                subfolder_prefix,
+                report_type=self.report_type,
+            )
+            engine.run()
+            parsed_reports, num_rewritten_sentences = process_filtered_reports(engine, self.llm_negative_filtering_cfg)
+            if engine.aggregated_processor_stats is not None:
+                self.meta_metrics.update(
+                    {
+                        f"negative_filtering_{metric_prefix}/{k}": float(v)
+                        for k, v in engine.aggregated_processor_stats.items()
+                    }
+                )
+                self.meta_metrics[f"negative_filtering_{metric_prefix}/num_rewritten_sentences"] = (
+                    num_rewritten_sentences
+                )
+
+        processed_texts = {
+            parsed.id: parsed.to_grounded_phrases_list() for parsed in parsed_reports if parsed.id is not None
+        }
         if set(processed_texts.keys()) != set(texts.keys()):
             logger.warning(
                 f"Key mismatch between processed and input texts. #input keys: {len(set(texts.keys()))}. #processed "

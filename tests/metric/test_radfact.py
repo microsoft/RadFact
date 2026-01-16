@@ -3,11 +3,15 @@
 #  Licensed under the MIT License (MIT). See LICENSE in the repo root for license information.
 #  ------------------------------------------------------------------------------------------
 
+import copy
+import functools
 import shutil
 from pathlib import Path
 
 import mock
 import pandas as pd
+from radfact.llm_utils.report_to_phrases.schema import PhraseList
+from radfact.llm_utils.engine.data_subset import DataSubset
 from radfact.llm_utils.nli.processor import get_ev_processor_singlephrase
 from radfact.paths import OUTPUT_DIR
 from radfact.llm_utils.prompt_tasks import ReportType
@@ -253,7 +257,9 @@ def test_nli_processing_with_endpoint(mock_nli_engine: mock.Mock) -> None:
     }
 
 
-def get_mock_phrase_engine(llm_phrase_cfg: DictConfig, df: pd.DataFrame, report_type: ReportType) -> mock.Mock:
+def get_mock_phrase_engine(
+    llm_phrase_cfg: DictConfig, df: pd.DataFrame, subfolder_prefix: str, report_type: ReportType
+) -> mock.Mock:
     mock_phrase_engine = mock.Mock()
     if df["FINDINGS"].values[0] == "The cat The dog The bird The rabbit":
         mock_phrase_engine.run.return_value = [
@@ -281,6 +287,57 @@ def get_mock_phrase_engine(llm_phrase_cfg: DictConfig, df: pd.DataFrame, report_
         ]
     mock_phrase_engine.aggregated_processor_stats = {'num_failures': 0, 'num_success': 1}
     return mock_phrase_engine
+
+
+def get_mock_filtering_engine(
+    llm_negative_filtering_cfg: DictConfig,
+    parsed_reports: list[ParsedReport],
+    subfolder_prefix: str,
+    report_type: ReportType,
+    tmp_path: Path,
+) -> mock.Mock:
+    mock_filtering_engine = mock.Mock()
+    new_parsed_reports = copy.deepcopy(parsed_reports)
+
+    # Inject a rewritten phrase to simulate filtering mistake
+    new_parsed_reports[0].sentence_list[0].new.append("Dummy filtered phrase")
+    mock_filtering_engine.return_raw_outputs = {
+        "endpoint_1": [PhraseList(phrases=report.sentence_list[0].new) for report in new_parsed_reports]
+    }
+    if parsed_reports[0].sentence_list[0].orig == "The cat The dog The bird The rabbit":
+        mock_filtering_engine.return_dataset_subsets = {
+            "endpoint_1": DataSubset(
+                start_index=0,
+                end_index=1,
+                index_col="sentence_id",
+                output_folder=tmp_path,
+                df=pd.DataFrame(
+                    {
+                        "sentence_id": ["study1_0"],
+                        "orig": ["The cat The dog The bird The rabbit"],
+                        "new": [["The cat", "The dog", "The bird", "The rabbit"]],
+                    }
+                ),
+            )
+        }
+    else:
+        mock_filtering_engine.return_dataset_subsets = {
+            "endpoint_1": DataSubset(
+                start_index=0,
+                end_index=1,
+                index_col="sentence_id",
+                output_folder=tmp_path,
+                df=pd.DataFrame(
+                    {
+                        "sentence_id": ["study1_0"],
+                        "orig": ["The cat The dog The bird The shark"],
+                        "new": [["The cat", "The dog", "The bird", "The shark"]],
+                    }
+                ),
+            )
+        }
+    mock_filtering_engine.aggregated_processor_stats = {'num_failures': 0, 'num_success': 1}
+    return mock_filtering_engine
 
 
 def test_nli_processing_with_endpoint_and_report_to_phrases(mock_nli_engine: mock.Mock) -> None:
@@ -321,6 +378,70 @@ def test_nli_processing_with_endpoint_and_report_to_phrases(mock_nli_engine: moc
         "report_to_phrases/num_dropped_references": 0,
     }
     assert_equal(actual=details, desired=expected_details, verbose=True)
+
+
+def test_nli_processing_with_negative_filtering(mock_nli_engine: mock.Mock, tmp_path: Path) -> None:
+    """Test that the GPT metric works end-to-end, when connecting to an actual endpoint, with the Redis Cache,
+    phrasification, and negative filtering.
+    """
+    progress_subfolder = Path(LLMEngine.OUTPUT_FILES_PREFIX) / RADFACT_SUBFOLDER
+    shutil.rmtree(progress_subfolder, ignore_errors=True)
+    metric = RadFactMetric(is_narrative_text=True, report_type=ReportType.CT, filter_negatives=True)
+    with mock.patch('radfact.metric.radfact.get_report_nli_engine', return_value=mock_nli_engine):
+        with mock.patch('radfact.metric.radfact.get_report_to_phrases_engine', side_effect=get_mock_phrase_engine):
+            with mock.patch(
+                'radfact.metric.radfact.get_negative_filtering_engine',
+                side_effect=functools.partial(get_mock_filtering_engine, tmp_path=tmp_path),
+            ):
+                result, details = metric.compute_metric_score(candidates_narrative, references_narrative)
+
+    assert isinstance(result, float)
+    assert result == 0.75
+    assert isinstance(details, dict)
+
+    expected_details = {
+        "logical_precision": 0.75,
+        "logical_recall": 0.75,
+        "spatial_precision": 0.0,
+        "spatial_recall": 0.0,
+        "grounding_precision": 0.0,
+        "grounding_recall": 0.0,
+        "num_candidate_phrases": 4,
+        "num_reference_phrases": 4,
+        "num_candidate_phrases_with_boxes": 0,
+        "num_reference_phrases_with_boxes": 0,
+        "logical_f1": 0.75,
+        "spatial_f1": 0.0,
+        "grounding_f1": 0.0,
+        "num_samples": 1,
+        "num_llm_failures": 0,
+        "num_llm_success": 8,
+        "num_llm_phrase_rewrites": 0,
+        "num_invalid_processed_samples": 0,
+        "report_to_phrases/generations/num_failures": 0,
+        "report_to_phrases/generations/num_success": 1,
+        'negative_filtering_report_to_phrases/generations/num_failures': 0.0,
+        'negative_filtering_report_to_phrases/generations/num_success': 1.0,
+        'negative_filtering_report_to_phrases/generations/num_rewritten_sentences': 1,
+        "report_to_phrases/ground_truth/num_failures": 0,
+        "report_to_phrases/ground_truth/num_success": 1,
+        'negative_filtering_report_to_phrases/ground_truth/num_failures': 0.0,
+        'negative_filtering_report_to_phrases/ground_truth/num_success': 1.0,
+        'negative_filtering_report_to_phrases/ground_truth/num_rewritten_sentences': 1,
+        "report_to_phrases/num_dropped_candidates": 0,
+        "report_to_phrases/num_dropped_references": 0,
+    }
+    assert_equal(actual=details, desired=expected_details, verbose=True)
+
+
+def test_nli_processing_fails_with_negative_filtering_config_error() -> None:
+    """
+    Test that an error is raised if negative filtering is enabled but the report type is not CT.
+    """
+    progress_subfolder = Path(LLMEngine.OUTPUT_FILES_PREFIX) / RADFACT_SUBFOLDER
+    shutil.rmtree(progress_subfolder, ignore_errors=True)
+    with pytest.raises(AssertionError):
+        RadFactMetric(is_narrative_text=True, report_type=ReportType.CXR, filter_negatives=True)
 
 
 def test_convert_input_to_multimodal() -> None:

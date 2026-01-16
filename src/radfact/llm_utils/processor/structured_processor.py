@@ -3,6 +3,7 @@
 #  Licensed under the MIT License (MIT). See LICENSE in the repo root for license information.
 #  ------------------------------------------------------------------------------------------
 
+import json
 import logging
 from enum import Enum
 from functools import partial
@@ -22,6 +23,7 @@ logger = logging.getLogger(__name__)
 
 _QUERY_KEY = "query"
 ResultT = TypeVar("ResultT", bound=BaseModel)
+ExampleClassT = TypeVar("ExampleClassT", bound=BaseModel)
 ProcessorStats = dict[str, int]
 
 
@@ -53,6 +55,34 @@ class Example(Protocol, Generic[QueryT, ResultT]):
 
     input: QueryT
     output: ResultT
+
+
+def parse_examples_from_json(examples_path: Path | None, example_class: type[ExampleClassT]) -> list[ExampleClassT]:
+    """
+    This function returns a list of "parsed" examples from a JSON file.
+
+    This JSON file is expected to contain a list of JSON-formatted objects, which should
+    be parseable by the "example class" (expected to be some Pydantic model).
+
+    If no path is provided, an empty list is returned.
+
+    This function is especially useful for loading few-shot examples for a structured processor.
+
+    :param examples_path: Path to the JSON file containing the examples.
+        If None, an empty list is returned.
+    :param example_class: The class of the examples to load. A Pydantic model.
+        We will attempt to parse each object in the JSON file as an instance of this class.
+    :return: List of examples, as instances of the provided class.
+    """
+    parsed_examples: list[ExampleClassT] = []
+    if examples_path is None:
+        return parsed_examples
+
+    with open(examples_path) as f:
+        unparsed_examples = json.load(f)
+        for example in unparsed_examples:
+            parsed_examples.append(example_class.parse_obj(example))
+    return parsed_examples
 
 
 class QueryTemplate(BaseChatPromptTemplate, Generic[QueryT, ResultT]):

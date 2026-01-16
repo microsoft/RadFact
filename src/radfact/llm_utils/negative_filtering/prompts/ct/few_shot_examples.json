@@ -1,0 +1,44 @@
+[
+    {
+        "input": [
+            "There is a relative opacity observed in the left mid-to-lower lung, possibly located in the lingula.",
+            "There is no evidence of pneumothorax.",
+            "The cardiac silhouette is unremarkable.",
+            "The mediastinal silhouette is unremarkable.",
+            "Mild recessions are observed in the upper lobe of the left lung."
+        ],
+        "output": {
+            "phrases": [
+                "There is a relative opacity observed in the left mid-to-lower lung, possibly located in the lingula.",
+                "Mild recessions are observed in the upper lobe of the left lung."
+            ]
+        }
+    }, {
+        "input": [
+            "The right lung is well aerated.",
+            "No signs of pulmonary edema.",
+            "No signs of focal consolidation.",
+            "The left side still shows mediastinal shifting and volume loss.",
+            "No signs of pleural effusions."
+        ],
+        "output": {
+            "phrases": [
+                "The left side still shows mediastinal shifting and volume loss."
+            ]
+        }
+    }, {
+        "input": [
+            "There is a moderate right pleural effusion.",
+            "There is no pneumothorax.",
+            "The heart size is within normal limits.",
+            "The radiograph shows linear opacities in the right middle lobe and left lower lobe, indicating atelectasis.",
+            "The mediastinal contours are unremarkable."
+        ],
+        "output": {
+            "phrases": [
+                "There is a moderate right pleural effusion.",
+                "The radiograph shows linear opacities in the right middle lobe and left lower lobe, indicating atelectasis."
+            ]
+        }
+    }
+]

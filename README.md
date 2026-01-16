@@ -134,7 +134,8 @@ You can refer to the [getting_started](getting_started.ipynb) notebook to see ho
 
 ```bash
 $ run_radfact --help
-usage: run_radfact [-h] [--radfact_config_name RADFACT_CONFIG_NAME] [--phrases_config_name PHRASES_CONFIG_NAME] --input_path INPUT_PATH [--is_narrative_text] [--output_dir OUTPUT_DIR] [--bootstrap_samples BOOTSTRAP_SAMPLES]
+usage: run_radfact [-h] --input_path INPUT_PATH [--is_narrative_text] [--radfact_config_name RADFACT_CONFIG_NAME] [--phrases_config_name PHRASES_CONFIG_NAME] [--filtering_config_name FILTERING_CONFIG_NAME] [--output_dir OUTPUT_DIR] 
+[--bootstrap_samples BOOTSTRAP_SAMPLES] [--report_type {cxr,ct}] [--filter_negatives]
 
 Compute RadFact metric for a set of samples and saves the results to a json file.
 
@@ -153,12 +154,15 @@ options:
                         The name of the config file for reports to phrases conversion. We use the default config file but you can provide a custom config. Make sure the config follows
                         the same structure as `configs/report_to_phrases.yaml` and is saved in the `configs` directory. This is necessary for hydra initialization from the `configs`
                         directory.
+  --filtering_config_name FILTERING_CONFIG_NAME
+                        The name of the config file for negative finding filtering. We use the default config file but you can provide a custom config. Make sure the config follows the same structure as `configs/negative_filtering.yaml` and is saved in the `configs` directory. This is necessary for hydra initialization from the `configs` directory.
   --output_dir OUTPUT_DIR
                         Path to the directory where the results will be saved as a json file.
   --bootstrap_samples BOOTSTRAP_SAMPLES
                         Number of bootstrap samples to use for computing the confidence intervals. Set to 0 to disable bootstrapping.
   --report_type {cxr,ct}
                         Type of report: 'cxr' for chest x-ray reports or 'ct' for CT reports.
+  --filter_negatives    Whether to filter negative findings from the parsed reports before computing the RadFact score.
 ```
 
 - for non-grounded reports (findings generation narrative text):
@@ -179,7 +183,7 @@ The script computes confidence intervals for the metrics using bootstrapping. Th
 
 ⚠️**WARNING**: Some queries may fail due to the endpoint limitations (timeouts, rate limits, etc.). When the LLM performing entailment verification fails, we **set these examples as not-entailed by default**. If this occurs in a significant number of cases, the results will not be reliable. The final metrics dict contains the number of such skipped queries under the key `num_llm_failures`. The script will print the number of skipped queries at the end of the run, and store these in the `skipped` directroy under the run id folder. You will also see a warning message in the logs for each failed query. `WARNING: No response for example {query_id}. Setting as NOT ENTAILED`.
 
-### Supporting Multiple Report Rypes
+### Supporting Multiple Report Types
 RadFact supports different report types through the `report_type` field in the `RadFactMetric` class. Currently supported options are:
 
 - `cxr` - Chest X-ray reports (default)
@@ -194,6 +198,13 @@ We also provide a script to convert reports to phrases. This is useful when you 
 ```
 
 This script is configurable using the `report_to_phrases.yaml` config file. You can specify the input file, output file, and the endpoint to use for the conversion.
+
+### Filtering Negative Phrases
+Radiology reports can have a disproportionate number of negative findings, and filtering these out can help focus evaluation on clinically relevant positive findings. For non-grounded reports, RadFact can be configured to filter out negative findings once reports have been converted to phrases. Note that this feature is currently only available for CT reports.
+
+```bash
+  run_radfact --input_path <path_to_input_file.json> --is_narrative_text --filter_negatives
+```
 
 ## What is RadFact?
 
