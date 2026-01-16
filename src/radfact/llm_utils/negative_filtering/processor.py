@@ -57,6 +57,7 @@ def load_filtering_queries_from_parsed_reports(
     Load queries for filtering from a list of parsed reports. Queries consist of all the
     newly parsed phrases from phrasification, along with metadata including the study ID
     and original phrase.
+ 
     :param reports: A list of ParsedReport objects.
     :param index_col: The column containing the index
     :return: A list of queries.
