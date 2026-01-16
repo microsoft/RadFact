@@ -60,7 +60,7 @@ def load_filtering_queries_from_parsed_reports(
  
     :param reports: A list of ParsedReport objects.
     :param index_col: The column containing the index
-    :return: A list of queries.
+    :return: A dataframe of queries.
     """
     queries = []
     for report in reports:
