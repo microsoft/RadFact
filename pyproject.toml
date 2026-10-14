@@ -46,7 +46,7 @@ dependencies = [
     "hi-ml-azure",
 
     # llm utils
-    "hydra-core==1.3.2",
+    "hydra-core==1.3.7",
     "langchain==0.2.17",
     "langchain-community==0.2.19",
     "langchain-openai==0.1.25",
